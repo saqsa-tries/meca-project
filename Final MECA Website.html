@@ -1,0 +1,5393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MECA Project — Mississauga &amp; Brampton Election Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#17233A;
+    --ink-soft:#3B4A63;
+    --paper:#EEF0E9;
+    --paper-2:#E3E6DB;
+    --card:#FBFBF8;
+    --line: rgba(23,35,58,0.14);
+    --teal:#0E7C7B;
+    --teal-ink:#083F3E;
+    --rose:#A33D5B;
+    --rose-ink:#4E1D2A;
+    --gold:#C98A2E;
+    --accent: var(--teal);
+    --accent-ink: var(--teal-ink);
+    --radius: 14px;
+    --shadow: 0 1px 2px rgba(23,35,58,0.06), 0 8px 24px rgba(23,35,58,0.06);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', system-ui, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+  a{ color:inherit; }
+  button{ font-family:inherit; cursor:pointer; }
+  :focus-visible{ outline:3px solid var(--gold); outline-offset:2px; }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
+  }
+
+  /* ---------- shell ---------- */
+  .shell{ max-width:1040px; margin:0 auto; padding:0 20px 80px; }
+  header.site{
+    position:sticky; top:0; z-index:20;
+    background:rgba(238,240,233,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .site-bar{
+    max-width:1040px; margin:0 auto; padding:16px 20px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+  }
+  .brand{ display:flex; align-items:baseline; gap:10px; cursor:pointer; background:none; border:none; padding:0; }
+  .brand .mark{
+    font-family:'Fraunces', serif; font-weight:700; font-size:1.5rem; letter-spacing:0.02em;
+    color:var(--ink);
+  }
+  .brand .sub{ font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-soft); }
+  .crumbs{ font-size:0.82rem; color:var(--ink-soft); display:flex; gap:6px; align-items:center; flex-wrap:wrap; }
+  .crumbs button{ background:none; border:none; color:var(--ink-soft); font-size:0.82rem; padding:2px 4px; border-radius:6px; }
+  .crumbs button:hover{ color:var(--ink); text-decoration:underline; }
+  .crumbs .sep{ opacity:0.4; }
+  .crumbs .current{ color:var(--ink); font-weight:600; }
+
+  /* ---------- hero / home ---------- */
+  .hero{ padding:56px 0 28px; }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:0.74rem; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--accent-ink); margin-bottom:14px; display:inline-block;
+    background:color-mix(in srgb, var(--accent) 14%, transparent);
+    padding:5px 10px; border-radius:20px;
+  }
+  .hero h1{ font-size:clamp(2rem, 5vw, 3.1rem); line-height:1.05; max-width:16ch; }
+  .hero p.lede{ margin-top:16px; max-width:52ch; font-size:1.05rem; color:var(--ink-soft); line-height:1.6; }
+
+  .city-picker{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:36px; }
+  @media (max-width:600px){ .city-picker{ grid-template-columns:1fr; } }
+  .city-card{
+    position:relative; text-align:left; border:1px solid var(--line); border-radius:var(--radius);
+    background:var(--card); padding:26px 22px; overflow:hidden;
+    box-shadow:var(--shadow); transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .city-card:hover{ transform:translateY(-3px); box-shadow:0 4px 8px rgba(23,35,58,0.08), 0 16px 32px rgba(23,35,58,0.10); }
+  .city-card .stripe{ position:absolute; left:0; top:0; bottom:0; width:6px; }
+  .city-card.mississauga .stripe{ background:var(--teal); }
+  .city-card.brampton .stripe{ background:var(--rose); }
+  .city-card .tag{ font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; }
+  .city-card.mississauga .tag{ color:var(--teal-ink); }
+  .city-card.brampton .tag{ color:var(--rose-ink); }
+  .city-card h2{ font-size:1.7rem; margin-top:6px; }
+  .city-card .meta{ margin-top:10px; font-size:0.9rem; color:var(--ink-soft); }
+  .city-card .go{ margin-top:18px; display:flex; align-items:center; gap:8px; font-weight:600; font-size:0.92rem; }
+  .city-card.mississauga .go{ color:var(--teal-ink); }
+  .city-card.brampton .go{ color:var(--rose-ink); }
+
+  /* ---------- ward finder ---------- */
+  .finder{
+    margin-top:32px; border:1px solid var(--line); border-radius:var(--radius);
+    background:var(--card); padding:22px 24px; box-shadow:var(--shadow);
+  }
+  .finder h3{ font-size:1.05rem; }
+  .finder .sub{ margin-top:4px; font-size:0.86rem; color:var(--ink-soft); }
+  .finder form{ display:flex; gap:10px; margin-top:16px; flex-wrap:wrap; }
+  .finder input[type="text"]{
+    flex:1 1 220px; min-width:0; padding:11px 14px; border-radius:9px; border:1px solid var(--line);
+    background:var(--paper); font-family:'IBM Plex Sans', sans-serif; font-size:0.95rem; color:var(--ink);
+  }
+  .finder input[type="text"]:focus-visible{ outline:3px solid var(--gold); outline-offset:1px; }
+  .finder button.submit{
+    padding:11px 20px; border-radius:9px; border:1px solid var(--ink); background:var(--ink); color:var(--paper);
+    font-weight:600; font-size:0.92rem; flex:none;
+  }
+  .finder button.submit:hover{ opacity:0.9; }
+  .finder button.submit:disabled{ opacity:0.55; cursor:default; }
+  .finder .hint{ margin-top:10px; font-size:0.78rem; color:var(--ink-soft); }
+  .finder-result{ margin-top:16px; }
+  .fr-status{ font-size:0.9rem; color:var(--ink-soft); }
+  .fr-card{
+    display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;
+    border:1px solid var(--line); border-radius:12px; padding:16px 18px; background:var(--paper);
+  }
+  .fr-card .fr-text{ font-size:0.95rem; }
+  .fr-card .fr-text .big{ font-family:'Fraunces',serif; font-weight:600; font-size:1.15rem; display:block; margin-bottom:2px; }
+  .fr-card a.fr-go{
+    flex:none; font-weight:600; font-size:0.88rem; padding:9px 16px; border-radius:8px;
+    background:var(--accent); color:#fff; white-space:nowrap;
+  }
+  .fr-error{
+    border:1px solid var(--line); border-radius:12px; padding:14px 16px; background:var(--paper);
+    font-size:0.88rem; color:var(--ink-soft); line-height:1.6;
+  }
+  .fr-error a{ color:var(--accent-ink); font-weight:600; }
+
+  .search-row{ max-width:1040px; margin:0 auto; padding:0 20px 12px; position:relative; }
+  .search-row form{ display:flex; gap:8px; }
+  .search-row input{ flex:1; min-width:0; padding:10px 14px; border:1px solid var(--line); border-radius:10px; background:var(--card); color:var(--ink); font:inherit; font-size:0.95rem; }
+  .search-row input:focus{ outline:2px solid var(--accent, var(--teal)); outline-offset:1px; }
+  .search-row .go-btn{ padding:10px 16px; border:1px solid var(--line); border-radius:10px; background:var(--card); color:var(--ink); font:inherit; font-size:0.9rem; font-weight:600; cursor:pointer; }
+  .search-row .go-btn:hover{ border-color:var(--accent, var(--teal)); }
+  .suggest{ position:absolute; left:20px; right:20px; top:calc(100% - 8px); background:var(--card); border:1px solid var(--line); border-radius:10px; box-shadow:var(--shadow); max-height:340px; overflow:auto; z-index:30; }
+  .suggest[hidden]{ display:none; }
+  .suggest button{ display:block; width:100%; text-align:left; padding:10px 14px; background:none; border:none; border-bottom:1px solid var(--line); cursor:pointer; color:var(--ink); font:inherit; }
+  .suggest button:last-child{ border-bottom:none; }
+  .suggest button:hover, .suggest button:focus{ background:color-mix(in srgb, var(--accent, var(--teal)) 10%, var(--card)); outline:none; }
+  .suggest .sn{ font-weight:600; font-size:0.95rem; }
+  .suggest .ss{ font-size:0.78rem; color:var(--ink-soft); margin-top:2px; }
+  .suggest .none{ padding:12px 14px; font-size:0.9rem; color:var(--ink-soft); }
+  .search-meta{ margin-top:10px; color:var(--ink-soft); font-size:0.9rem; }
+  .ai-note{ margin-top:14px; padding:10px 12px; border-left:3px solid var(--line); font-size:.85rem; color:var(--ink-soft); line-height:1.5; max-width:62ch; }
+  .about{ margin-top:56px; border-top:1px solid var(--line); padding-top:36px; }
+  .about h3{ font-size:1.3rem; }
+  .about p{ margin-top:12px; max-width:62ch; color:var(--ink-soft); line-height:1.7; }
+  .stat-row{ display:flex; gap:28px; margin-top:24px; flex-wrap:wrap; }
+  .stat{ min-width:140px; }
+  .stat .num{ font-family:'IBM Plex Mono', monospace; font-size:1.5rem; font-weight:600; color:var(--accent-ink); }
+  .stat .label{ font-size:0.8rem; color:var(--ink-soft); margin-top:2px; }
+
+  /* ---------- city hub ---------- */
+  .hub-head{ padding:44px 0 8px; }
+  .hub-head .tag{ font-family:'IBM Plex Mono', monospace; font-size:0.76rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent-ink); }
+  .hub-head h1{ font-size:clamp(1.9rem, 4.5vw, 2.6rem); margin-top:6px; }
+  .hub-head .note{ margin-top:10px; color:var(--ink-soft); max-width:56ch; line-height:1.6; }
+
+  .option-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:32px; }
+  @media (max-width:600px){ .option-grid{ grid-template-columns:1fr; } }
+  .option-card{
+    text-align:left; border:1px solid var(--line); border-radius:var(--radius);
+    background:var(--card); padding:24px; box-shadow:var(--shadow);
+    transition:transform .15s ease;
+  }
+  .option-card:hover{ transform:translateY(-3px); }
+  .option-card .n{ font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--accent-ink); letter-spacing:0.1em; }
+  .option-card h3{ font-size:1.35rem; margin-top:8px; }
+  .option-card p{ margin-top:8px; color:var(--ink-soft); font-size:0.92rem; }
+
+  /* ---------- ward stubs ---------- */
+  .ward-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(120px,1fr)); gap:14px; margin-top:30px; }
+  .ward-stub{
+    position:relative; background:var(--card); border:1px solid var(--line); border-radius:10px;
+    padding:16px 10px 14px; text-align:center; box-shadow:var(--shadow);
+    display:flex; flex-direction:column; align-items:center; gap:6px;
+  }
+  .ward-stub:hover{ border-color:var(--accent); }
+  .ward-stub::before, .ward-stub::after{
+    content:""; position:absolute; width:14px; height:14px; background:var(--paper);
+    border:1px solid var(--line); border-radius:50%; left:50%; transform:translateX(-50%);
+  }
+  .ward-stub::before{ top:-8px; }
+  .ward-stub::after{ bottom:-8px; }
+  .ward-stub .lbl{ font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-soft); }
+  .ward-stub .num{ font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:1.5rem; color:var(--ink); }
+  .ward-stub .perf{ width:70%; border-top:1px dashed var(--line); margin:2px 0; }
+
+  /* ---------- candidate grid ---------- */
+  .cand-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(190px,1fr)); gap:16px; margin-top:30px; }
+  .cand-card{
+    text-align:left; background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:16px; box-shadow:var(--shadow); display:flex; gap:12px; align-items:center;
+    transition:transform .15s ease, border-color .15s ease;
+  }
+  .cand-card:hover{ transform:translateY(-2px); border-color:var(--accent); }
+  .avatar{
+    width:52px; height:52px; border-radius:10px; flex:none;
+    background:color-mix(in srgb, var(--accent) 12%, var(--card));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-weight:600; color:var(--accent-ink); font-size:1.1rem;
+    border:1px solid var(--line);
+  }
+  .cand-card .name{ font-weight:600; font-size:0.98rem; line-height:1.25; }
+  .cand-card .role{ font-size:0.78rem; color:var(--ink-soft); margin-top:3px; }
+  .cand-card .badge{
+    display:inline-block; margin-top:5px; font-family:'IBM Plex Mono',monospace; font-size:0.62rem;
+    letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); background:color-mix(in srgb, var(--gold) 16%, transparent);
+    padding:1px 6px; border-radius:4px;
+  }
+
+  .empty{
+    margin-top:30px; border:1px dashed var(--line); border-radius:var(--radius); padding:34px 24px;
+    text-align:center; color:var(--ink-soft); background:color-mix(in srgb, var(--card) 60%, transparent);
+  }
+  .empty .glyph{ font-family:'Fraunces',serif; font-size:1.8rem; color:var(--accent-ink); }
+  .empty p{ max-width:44ch; margin:10px auto 0; line-height:1.6; font-size:0.92rem; }
+
+  /* ---------- candidate detail ---------- */
+  .detail-head{ padding:44px 0 0; display:flex; gap:20px; align-items:flex-start; flex-wrap:wrap; }
+  .avatar-lg{
+    width:104px; height:104px; border-radius:16px; flex:none;
+    background:color-mix(in srgb, var(--accent) 14%, var(--card));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-weight:600; color:var(--accent-ink); font-size:2.4rem;
+    border:1px solid var(--line);
+  }
+  .detail-head h1{ font-size:clamp(1.8rem,4vw,2.4rem); }
+  .detail-head .role-line{ margin-top:8px; color:var(--ink-soft); font-size:0.98rem; }
+  .detail-head .badge{
+    display:inline-block; margin-top:10px; font-family:'IBM Plex Mono',monospace; font-size:0.66rem;
+    letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); background:color-mix(in srgb, var(--gold) 16%, transparent);
+    padding:2px 8px; border-radius:4px;
+  }
+
+  .detail-grid{ display:grid; grid-template-columns:2fr 1fr; gap:24px; margin-top:36px; }
+  @media (max-width:700px){ .detail-grid{ grid-template-columns:1fr; } }
+  .panel{ background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow); }
+  .panel h3{ font-size:1.05rem; }
+  .panel + .panel{ margin-top:20px; }
+  .placeholder-text{ margin-top:12px; color:var(--ink-soft); font-size:0.92rem; line-height:1.65; font-style:italic; }
+  .promise-list{ list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; gap:10px; }
+  .promise-list li{ display:flex; gap:10px; align-items:flex-start; font-size:0.92rem; color:var(--ink-soft); }
+  .promise-list li .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); margin-top:7px; flex:none; }
+  .link-list{ list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; gap:8px; }
+  .link-list a{ display:block; font-size:0.88rem; padding:9px 10px; border:1px solid var(--line); border-radius:8px; background:var(--paper); }
+  .link-list a:hover{ border-color:var(--accent); }
+  .official-note{ font-size:0.8rem; color:var(--ink-soft); margin-top:14px; line-height:1.5; }
+
+  footer.site{ margin-top:70px; border-top:1px solid var(--line); padding:28px 0 40px; }
+  footer.site p{ font-size:0.8rem; color:var(--ink-soft); max-width:60ch; line-height:1.6; }
+
+  .back-link{
+    display:inline-flex; align-items:center; gap:6px; margin-top:26px; font-size:0.88rem; color:var(--ink-soft);
+    background:none; border:none; padding:0;
+  }
+  .back-link:hover{ color:var(--ink); text-decoration:underline; }
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="site-bar">
+    <button class="brand" id="brandBtn">
+      <span class="mark">MECA</span><span class="sub">Election Guide</span>
+    </button>
+    <nav class="crumbs" id="crumbs" aria-label="Breadcrumb"></nav>
+  </div>
+  <div class="search-row" role="search">
+    <form id="siteSearchForm" autocomplete="off">
+      <input type="search" id="siteSearchInput" placeholder="Search for a candidate by name" aria-label="Search for a candidate by name" />
+      <button type="submit" class="go-btn">Search</button>
+    </form>
+    <div class="suggest" id="siteSuggest" hidden></div>
+  </div>
+</header>
+
+<main class="shell" id="app"></main>
+
+<footer class="site">
+  <div class="shell" style="padding:0;">
+    <p>MECA Project is an independent, non-partisan guide to the October 26, 2026 Ontario municipal elections in Mississauga and Brampton. Candidate information is gathered by volunteers from public sources, including candidates’ own websites and social media, and may be incomplete or out of date. Always confirm candidate lists and platforms with your city’s official election office before voting.</p>
+  </div>
+</footer>
+
+<script>
+/* ---------------------------------------------------------
+   DATA
+   Real, sourced mayoral candidate names are included below.
+   Candidate data is generated into the CANDIDATE DATA block below
+   by csv_to_website_data.py — edit the spreadsheet, not this file.
+--------------------------------------------------------- */
+const CITIES = {
+  mississauga: {
+    key: 'mississauga',
+    name: 'Mississauga',
+    accentVar: '--teal',
+    accentInkVar: '--teal-ink',
+    wardCount: 11,
+    officialUrl: 'https://mississaugavotes.ca/2026-municipal-election/',
+    blurb: 'Ontario\u2019s third-largest city elects a Mayor, 11 Ward Councillors and School Board Trustees.',
+    mayoral: [],
+    // --- Council & Trustee races, modeled independently of a single ward
+    // number. A ward can belong to more than one race (its councillor race,
+    // plus a different trustee race per school board) \u2014 see racesForWard().
+    councillorRaces: Array.from({length:11}, (_, i) => ({
+      id: `ms-c-${i+1}`, label: `Ward ${i+1} Councillor`, wards:[i+1], candidates:[]
+    })),
+    trusteeRaces: [
+      {id:'ms-t-ep-1-7',  board:'English Public',   wards:[1,7],    candidates:[]},
+      {id:'ms-t-ep-2-8',  board:'English Public',   wards:[2,8],    candidates:[]},
+      {id:'ms-t-ep-3-4',  board:'English Public',   wards:[3,4],    candidates:[]},
+      {id:'ms-t-ep-5',    board:'English Public',   wards:[5],      candidates:[]},
+      {id:'ms-t-ep-6-11', board:'English Public',   wards:[6,11],   candidates:[]},
+      {id:'ms-t-ep-9-10', board:'English Public',   wards:[9,10],   candidates:[]},
+      {id:'ms-t-es-1-3',  board:'English Separate', wards:[1,3],    candidates:[]},
+      {id:'ms-t-es-2-8',  board:'English Separate', wards:[2,8],    candidates:[]},
+      {id:'ms-t-es-4',    board:'English Separate', wards:[4],      candidates:[]},
+      {id:'ms-t-es-5',    board:'English Separate', wards:[5],      candidates:[]},
+      {id:'ms-t-es-6-11', board:'English Separate', wards:[6,11],   candidates:[]},
+      {id:'ms-t-es-7',    board:'English Separate', wards:[7],      candidates:[]},
+      {id:'ms-t-es-9-10', board:'English Separate', wards:[9,10],   candidates:[]},
+      {id:'ms-t-fp', board:'French Public', wards:'citywide', candidates:[]},
+      {id:'ms-t-fs', board:'French Separate', wards:'citywide', candidates:[]}
+    ]
+  },
+  brampton: {
+    key: 'brampton',
+    name: 'Brampton',
+    accentVar: '--rose',
+    accentInkVar: '--rose-ink',
+    wardCount: 10,
+    officialUrl: 'https://www.brampton.ca/EN/City-Hall/Election',
+    blurb: 'The Flower City elects a Mayor, Regional &amp; City Councillors across 10 wards, and School Board Trustees.',
+    mayoral: [],
+    // Brampton pairs its 10 wards into 5 pairs; each pair elects BOTH a
+    // City Councillor and a Regional Councillor (two separate races).
+    councillorRaces: [[1,5],[2,6],[3,4],[7,8],[9,10]].flatMap(pair => ([
+      {id:`br-cc-${pair.join('-')}`, type:'City',     label:`City Councillor (Wards ${pair.join(' & ')})`,     wards:pair, candidates:[]},
+      {id:`br-rc-${pair.join('-')}`, type:'Regional', label:`Regional Councillor (Wards ${pair.join(' & ')})`, wards:pair, candidates:[]}
+    ])),
+    trusteeRaces: [
+      {id:'br-t-ep-1-5',    board:'English Public',   wards:[1,5],        candidates:[]},
+      {id:'br-t-ep-2-6',    board:'English Public',   wards:[2,6],        candidates:[]},
+      {id:'br-t-ep-3-4',    board:'English Public',   wards:[3,4],        candidates:[]},
+      {id:'br-t-ep-7-8',    board:'English Public',   wards:[7,8],        candidates:[]},
+      {id:'br-t-ep-9-10',   board:'English Public',   wards:[9,10],       candidates:[]},
+      {id:'br-t-es-1-3-4',  board:'English Separate', wards:[1,3,4],      candidates:[]},
+      {id:'br-t-es-2-5-6',  board:'English Separate', wards:[2,5,6],      candidates:[]},
+      {id:'br-t-es-7-8-9-10', board:'English Separate', wards:[7,8,9,10], candidates:[]},
+      {id:'br-t-fp', board:'French Public',   wards:'citywide', candidates:[]},
+      {id:'br-t-fs', board:'French Separate', wards:'citywide', candidates:[]}
+    ]
+  }
+};
+
+// Given a ward number, find every race (council + trustee) that includes it.
+// Wards can belong to more than one trustee race (one per school board) and,
+// for Brampton, two councillor races (City + Regional).
+function racesForWard(city, wardNum){
+  const n = Number(wardNum);
+  const inRace = (r) => r.wards === 'citywide' || (Array.isArray(r.wards) && r.wards.includes(n));
+  return {
+    councillor: city.councillorRaces.filter(inRace),
+    trustee: city.trusteeRaces.filter(inRace)
+  };
+}
+
+function findRace(city, raceId){
+  return city.councillorRaces.find(r => r.id === raceId) || city.trusteeRaces.find(r => r.id === raceId) || null;
+}
+
+function raceWardLabel(race){
+  if(race.wards === 'citywide') return 'Citywide';
+  return (race.wards.length === 1 ? 'Ward ' : 'Wards ') + race.wards.join(' & ');
+}
+
+/* ===== CANDIDATE DATA START =====
+   Generated by csv_to_website_data.py from the research spreadsheet.
+   Edit the spreadsheet and re-run the script rather than editing by hand. */
+const CANDIDATE_DATA = {
+ "mayoral": {
+  "mississauga": [
+   {
+    "id": "mississauga-mayoral-karam-ahmed",
+    "name": "Karam Ahmed",
+    "role": "Mayoral Candidate",
+    "about": "There was no information to be found on this candidate's campaign at the time of research.",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/karam4mayor.mississauga",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:karam4mayor@gmail.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "mississauga-mayoral-aamir-bhatti",
+    "name": "Aamir Bhatti",
+    "role": "Mayoral Candidate",
+    "about": "There was no information to be found on this candidate's campaign at the time of research."
+   },
+   {
+    "id": "mississauga-mayoral-bonnie-crombie",
+    "name": "Bonnie Crombie",
+    "role": "Mayoral Candidate",
+    "about": "Bonnie Crombie served as Mayor from 2014 to 2024 and was elected for three consecutive terms. Before becoming mayor, she served as a Mississauga Ward 5 Councillor and Peel Regional Councillor from 2011 to 2014, and as Member of Parliament for Mississauga-Streetsville from 2008 to 2011. She became leader of the Ontario Liberal Party in 2023 and served until 2026. Crombie holds an Honours BA in political science and international relations from the University of Toronto and an MBA from York University's Schulich School of Business. Before entering municipal politics, Crombie held positions in business, marketing, public affairs and government relations, including work with McDonald's, The Walt Disney Company and the Insurance Bureau of Canada.",
+    "promises": [
+     "To provide interest-free property-tax deferrals on the City portion of qualifying commercial and industrial property taxes for businesses directly affected by U.S. tariffs",
+     "Making Buy Canadian and Made-in-Mississauga procurement permanent and measurable",
+     "Create a Mayor's Tariff Action Team with a 48-hour response commitment for major employers facing significant job or investment decisions",
+     "To fast-track investments that protect or create Mississauga jobs",
+     "Use the Pearson Economic Zone to attract investment and help local exporters reach new international markets"
+    ],
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.bonniecrombie.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/bonniecrombie/",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:info@bonniecrombie.ca",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "mississauga-mayoral-dipika-damerla",
+    "name": "Dipika Damerla",
+    "role": "Mayoral Candidate",
+    "note": "Ward 7 Councillor",
+    "about": "Dipika Damerla is the Ward 7 city councillor in Mississauga, a seat she has held since 2018. Before that she was the Liberal MPP for Mississauga East—Cooksville from 2011 to 2018. She also ran in the 2024 Mississauga mayoral by-election. Her campaign website describes her priorities as transparency, waste reduction, green space and mental health crisis response.",
+    "aiSummary": true,
+    "promises": [
+     "Freeze the City-controlled share of residential property taxes for 2027, then limit increases to inflation from 2028 unless service improvements are shown.",
+     "Create an independent Auditor General and a Fraud and Waste Hotline.",
+     "Four-day pothole guarantee on major City roads, weather permitting.",
+     "Add more 15-minute MiWay service and extend the MiWay transfer window from two to three hours in 2028.",
+     "Cut average City business-permit processing times by 50%.",
+     "Review the Peel Regional Police funding formula and advocate for value-for-money audits."
+    ],
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://dipikaformayor.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/dipikadamerla",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:team@dipikaformayor.ca",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (437) 427-4271",
+      "url": "tel:+14374274271",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "mississauga-mayoral-gord-elliott",
+    "name": "Gord Elliott",
+    "role": "Mayoral Candidate",
+    "about": "There was no information to be found on this candidate's campaign at the time of research.",
+    "links": [
+     {
+      "label": "Contact email",
+      "url": "mailto:sgg.elliott@gmail.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "mississauga-mayoral-frank-fang",
+    "name": "Frank Fang",
+    "role": "Mayoral Candidate",
+    "about": "Frank Fang is a Candidate for Mayor of Mississauga in the 2026 Municipal Election. He was also previously a candidate for Mayor of Mississauga in the 2024 municipal by-election, along with in the 2022 Mississauga municipal election, and in the 2019 federal election, according to his campaign biography. Fang has also been involved with a Mississauga Electoral District Association.",
+    "promises": [
+     "Establish a $10 Million Crime-Prevention Reward Fund",
+     "Protect Taxpayers and “Axe Property Tax”",
+     "Address Residential Snow-Removal Problems"
+    ],
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://votefrankfang.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/frankfang.2022",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:vote@votefrankfang.ca",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (416) 557-3222",
+      "url": "tel:+14165573222",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "mississauga-mayoral-amjad-jilani",
+    "name": "Amjad Jilani",
+    "role": "Mayoral Candidate",
+    "about": "Amjad Jilani is an ordinary resident of Mississauga who got fed up, started posting online about the state of the city, and found that thousands of other frustrated residents felt the same way. Hence, his whole qualification argument is built on contrast: he points out that the people currently in charge advertise 20 years of political experience, then asks voters to look at what that produced, namely an LRT pushed to 2028, a 5.21 per cent tax hike, and climbing auto theft. Therefore, he frames himself as the unbought option and says he takes no corporate donations. That said, there is very little public record on him beyond the campaign itself. He has not disclosed a career history, education, or professional background, and no outlet has profiled him. He runs the campaign Instagram (@amjadformayor) himself, replies to DMs and comments personally.",
+    "promises": [
+     "Mitigating car theft using community",
+     "Avoiding construction delays through stricter contracts",
+     "External audits for optimizing city budget",
+     "Improving mental health resources in Mississauga"
+    ],
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://amjadformayor.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/amjadformayor",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:info@amjadformayor.ca",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "mississauga-mayoral-mohsin-khan",
+    "name": "Mohsin Khan",
+    "role": "Mayoral Candidate",
+    "about": "There was no information to be found on this candidate's campaign at the time of research."
+   },
+   {
+    "id": "mississauga-mayoral-mike-matulewicz",
+    "name": "Mike Matulewicz",
+    "role": "Mayoral Candidate",
+    "about": "Mike Matulewicz is a retired Toronto Police Service officer with corporate background. Matulewicz wants safety and stability for community which is why he is running for mayor, his campaign focuses on issues like crime, affordability, job loss and addressing poverty. He currently has a Folding Chair Driveway Campaign where Matulewicz visits your driveway with his golden retriever Luke to discuss contemporary issues.",
+    "promises": [
+     "Lower tax burden on homeowners and businesses | End city programs that don’t deliver essential services",
+     "Strengthen Mississauga City Fire Service - Meeting national standards of staff and equipment",
+     "City-run medical clinics | Food as infrastructure | Safe beds for every woman fleeing violence",
+     "Safer streets - Community Response Unit | Independent auditor general"
+    ],
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.getreadyontario.com/",
+      "kind": "site"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/mike_4mayor",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:matulewiczmike@hotmail.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "mississauga-mayoral-fadi-naami",
+    "name": "Fadi Naami",
+    "role": "Mayoral Candidate",
+    "about": "There was no information to be found on this candidate's campaign at the time of research.",
+    "links": [
+     {
+      "label": "Contact email",
+      "url": "mailto:fadinaami@gmail.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "mississauga-mayoral-carolyn-parrish",
+    "name": "Carolyn Parrish",
+    "role": "Mayoral Candidate",
+    "incumbent": true,
+    "about": "Carolyn Parrish is the current Mayor of Mississauga and is running for re-election. She has been mayor since 2024. Before that she served as a Mississauga city councillor, and earlier as the Member of Parliament for Mississauga—Erindale from 1993 to 2006. Her campaign website focuses on shifting some costs from the Region of Peel to the cities and on changing how Peel Regional Police is funded.",
+    "aiSummary": true,
+    "promises": [
+     "Change the Peel Regional Police cost split from 62% Mississauga / 38% Brampton to 50/50. The campaign estimates this would save Mississauga about $106 million a year.",
+     "Ask the Province to phase the police funding change in over three years, so Brampton does not face a sudden tax increase."
+    ],
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://parrishformayor.com/",
+      "kind": "site"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/Mayorparrish",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:info@parrishformayor.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (647) 694-4911",
+      "url": "tel:+16476944911",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "mississauga-mayoral-david-shaw",
+    "name": "David Shaw",
+    "role": "Mayoral Candidate",
+    "about": "David Shaw is an independent candidate who ran for Mayor of Mississauga in 2022 and 2024. A retired fire safety worker, he campaigns outside traditional political parties with a focus on family and community values. His main goals include lowering property taxes, opposing high-density \"15-minute city\" planning models, giving parents a stronger voice in schools, and cutting wasteful spending at City Hall.",
+    "promises": [
+     "<strong>Cut Property Taxes:<\/strong> Freeze or lower city taxes to keep life affordable for homeowners and small businesses",
+     "<strong>Stop \"15-Minute City\" Plans:<\/strong> Block high-density neighborhood rules and global planning projects like UN Agenda 2030",
+     "<strong>Parent Rights in Schools:<\/strong> Push for more parental say and traditional values in local school programs",
+     "<strong>Cut City Hall Waste:<\/strong> Control city spending and make local government more open and accountable"
+    ],
+    "links": [
+     {
+      "label": "Contact email",
+      "url": "mailto:mayordavid2022mississauga@proton.me",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "mississauga-mayoral-alvin-tedjo",
+    "name": "Alvin Tedjo",
+    "role": "Mayoral Candidate",
+    "note": "Ward 2 Councillor",
+    "about": "Alvin Tedjo is a lifelong resident of Mississauga. Alvin Tedjo currently serves as the City Councillor for Clarkson and Lorne Park. His campaign describes his work regarding supporting families, strengthening communities, improving government services, and making Mississauga more affordable. His experience in Mississauga includes working to provide free transit for children, increasing housing options, protecting green spaces, and improving the community. He also serves on city side and regional committees, where he works to bring the residents’ concerns and ideas forward. Alvin Tedjo advocates mainly for families, communities, and affordability and says he wants to use his experience in public service to help improve Mississauga.",
+    "promises": [
+     "Lower the cost of living for Mississauga residents",
+     "Improve community safety and preventing crime",
+     "Make Mississauga a great place to live in",
+     "Better fiscal management and freezing property taxes"
+    ],
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.alvintedjo.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/teamtedjo",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:team@tedjo.ca",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (905) 275-6622",
+      "url": "tel:+19052756622",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "mississauga-mayoral-ana-luisa-vasquez-de-espinal",
+    "name": "Ana Luisa Vasquez De Espinal",
+    "role": "Mayoral Candidate",
+    "about": "Ana Luisa Vasquez De Espinal is Mississauga resident and a dedicated mother of 3 running for Mayor of Mississauga in the 2026 Municipal Election. She has 10+ years experienced housing property consultant along with 10+ years experienced legal counselor to private financial sector. Vasquez De Espinal is also the 1st Dominican to obtain marriage officer license in Ontario along with the 1st Dominican mayoral candidate in Mississauga.",
+    "promises": [
+     "Make Mississauga more affordable to live, easier to work and safer to grow",
+     "Creating a responsive city hall that helps Mississauga’s economy thrive",
+     "Protect neighbourhood identity and diversity while preparing to make Mississauga as one of the major cities of Canada",
+     "Ensure a Mississauga were everyone has equal access to local opportunities"
+    ],
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://analuisaformississaugamayor.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/analuisaformississaugamayor.ca",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:marriedbyana@gmail.com",
+      "kind": "contact"
+     }
+    ]
+   }
+  ],
+  "brampton": [
+   {
+    "id": "brampton-mayoral-jagruti-bhatt",
+    "name": "Jagruti Bhatt",
+    "role": "Mayoral Candidate",
+    "about": "Jagruti Bhatt is an entrepreneur and grassroots community leader running for Mayor of Brampton in the 2026 municipal election. A Brampton resident with over 20 years in Canada and more than 15 years of community service, she has led grassroots initiatives supporting newcomers, women facing family challenges, youth employment, and international students, including founding the COVID Food Vahini project to deliver meals and supplies to isolated seniors and families. Her campaign focuses on practical, people-first leadership, neighborhood safety, small business growth, and fair local regulations.",
+    "promises": [
+     "<strong>Community Safety:<\/strong> Build safer neighborhoods by expanding proactive local policing and boosting community engagement programs",
+     "<strong>Replace RRL with OCCUPANCY C.A.R.E.:<\/strong> Scrap the rushed Residential Rental Licensing (RRL) program and replace it with the OCCUPANCY C.A.R.E. model (<em>Compliance, Accountability, Responsibility, and Education<\/em>) to focus on education first rather than unfair enforcement",
+     "<strong>Affordable Living &amp; Cost Relief:<\/strong> Address local housing affordability and work to reduce the rising cost of living for Brampton families",
+     "<strong>Support for Seniors &amp; Vulnerable Residents:<\/strong> Expand community programs, healthcare navigation, and essential services to ensure older residents are supported with dignity"
+    ],
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.jagrutibhatt.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://instagram.com/jagruti.bhatt_",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:connect@jagrutibhatt.ca",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "brampton-mayoral-patrick-brown",
+    "name": "Patrick Brown",
+    "role": "Mayoral Candidate",
+    "incumbent": true,
+    "about": "Patrick Brown has served as Mayor of Brampton since 2018 and was re-elected in 2022. Before becoming mayor, he served as a Barrie city councillor, Member of Parliament for Barrie, and Ontario MPP for Simcoe North. He was also elected Leader of the Ontario PC Party in 2015 and served as the party's leader until 2018.He studied political science at the University of Toronto and earned a law degree from the University of Windsor.",
+    "promises": [
+     "Continue advocating for measures to improve community safety",
+     "Support the development of Brampton's second full-service hospital",
+     "Continue working on major infrastructure projects, including the Hazel McCallion LRT extension and Riverwalk",
+     "Attract investment and support business growth and job creation in Brampton"
+    ],
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://votepatrickbrown.com/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:patrick@votepatrickbrown.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (905) 863-6111",
+      "url": "tel:+19058636111",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "brampton-mayoral-gurdeep-singh-dhothar",
+    "name": "Gurdeep Singh Dhothar",
+    "role": "Mayoral Candidate",
+    "about": "There was no information to be found on this candidate's campaign at the time of research."
+   },
+   {
+    "id": "brampton-mayoral-vidya-sagar-gautam",
+    "name": "Vidya Sagar Gautam",
+    "role": "Mayoral Candidate",
+    "about": "Vidya Sagar Gautam is currently part a non-profit organization known as the Canadian Hindu Chamber of Commerce where he helps out with: Economic growth &amp; business development, networking &amp; relationship building, advocacy &amp; representation, community building &amp; social responsibility. This is Gautam’s second mayoral bid after running in the municipal election 4 years prior, but he has also run for Regional Councillor and Peel Regional Chair in the past. He possesses a strong background in engineering, manufacturing management and science.",
+    "promises": [
+     "Proposes a plan for a 0% property tax increase in Brampton",
+     "Address homelessness through new initiatives, early interventions, and restoring public spaces",
+     "Promises that the following core values will surround his term: integrity, accountability, inclusivity, respect for all communities, and service before self",
+     "Focus on: Community safety and well-being | Affordable housing &amp; growth | Transit &amp; infrastructure | Support for seniors, youth, and families | Support for small businesses &amp; jobs | Keep Brampton clean, green, and united"
+    ],
+    "links": [
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/voteVidyaSagarGautam/",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:vsgautam@hotmail.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "brampton-mayoral-prabh-gill",
+    "name": "Prabh Gill",
+    "role": "Mayoral Candidate",
+    "about": "Prabh Singh Gill is a Candidate for Mayor of Brampton in the 2026 Municipal Election. Gill has more than 15 years of experience in dispute resolution demonstrated by his profession as a Qualified Arbitrator (Q.Arb), legal practitioner and mediator, along with being a member in good standing of the Law Society of Ontario. Gill’s professional background includes civil and human rights-related dispute resolution and advocacy. His work emphasizes alternative dispute resolution and improving access to practical and less adversarial forms of conflict resolution.",
+    "promises": [
+     "Control spending, eliminate waste and grow Brampton’s commercial tax base",
+     "Bring more jobs, investment and economic opportunity home to Brampton",
+     "Practical action to strengthen safety across our communities",
+     "Traffic, Highway 410 advocacy, transit and better transportation planning"
+    ],
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://prabhsgill.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:elect@prabhsgill.ca",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (905) 872-7000",
+      "url": "tel:+19058727000",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "brampton-mayoral-wesley-jackson",
+    "name": "Wesley Jackson",
+    "role": "Mayoral Candidate",
+    "about": "Wesley Jackson is a real estate lawyer running for Mayor of Brampton. He also ran for mayor in 2018. His campaign website says he has given educational seminars for the Ontario Bar Association and the Association of Nigerian Lawyers, and lists endorsements from several former Brampton city and regional councillors. His site describes his themes as strong communities, a connected city and a brighter future, and raises questions about city debt repayments and building costs.",
+    "aiSummary": true,
+    "promises": [
+     "Hold live town halls every Tuesday from 6 to 8 PM at the campaign office (12 Rutherford Road South, Unit 1)."
+    ],
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://wesleyjackson.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Website",
+      "url": "https://shorturl.at/OI1Ns",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:mayorwes@outlook.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (416) 844-6136",
+      "url": "tel:+14168446136",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "brampton-mayoral-najma-khurram",
+    "name": "Najma Khurram",
+    "role": "Mayoral Candidate",
+    "about": "There was no information to be found on this candidate's campaign at the time of research.",
+    "links": [
+     {
+      "label": "Contact email",
+      "url": "mailto:najmakhurram2010@gmail.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "brampton-mayoral-nathaniel-peart",
+    "name": "Nathaniel Peart",
+    "role": "Mayoral Candidate",
+    "about": "There was no information to be found on this candidate's campaign at the time of research.",
+    "links": [
+     {
+      "label": "Contact email",
+      "url": "mailto:votenateformayor@gmail.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "brampton-mayoral-prabhjot-kaur-sidhu",
+    "name": "Prabhjot Kaur Sidhu",
+    "role": "Mayoral Candidate",
+    "about": "There was no information to be found on this candidate's campaign at the time of research."
+   },
+   {
+    "id": "brampton-mayoral-sandeep-somal",
+    "name": "Sandeep Somal",
+    "role": "Mayoral Candidate",
+    "about": "Sandeep Somal is a candidate for Mayor of Brampton. According to his campaign website and local news coverage, he was born and raised in Brampton, works for a non-profit organization, and founded a hockey club for low-income and racialized youth. He says he is running to make city government more responsive and efficient.",
+    "aiSummary": true,
+    "promises": [
+     "Stabilize costs for families and reduce waste in city spending.",
+     "Improve access to kids’ programs with more affordable recreation, sports and community spaces.",
+     "Speed up permits, applications and city service delivery.",
+     "Reduce delays so more homes can be built faster.",
+     "Focus on property upkeep, enforcement and neighbourhood quality of life.",
+     "Improve accountability and responsibility in city budgets."
+    ],
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://sandeepsomalformayor.ca",
+      "kind": "site"
+     }
+    ]
+   },
+   {
+    "id": "brampton-mayoral-paul-tarriwal",
+    "name": "Paul Tarriwal",
+    "role": "Mayoral Candidate",
+    "about": "Paul Tarriwal is licensed with the Real Estate Council of Ontario and has been selling estate in the Peel Region since 2011. Tarriwal spent well over a decade sitting across the table from families trying to buy their first home and small business owners weighing whether they can still afford to operate here. Because of these experiences, he’s now running for Mayor of Brampton in the upcoming 2026 election. Tarriwal conveys how he's watched up close how city decisions on zoning, taxes, and transit play out in people’s actual lives. Therefore, this is exactly why he believes he’s the right person to make those calls next.",
+    "promises": [
+     "Deal with the fallout from local plant closures and reduce youth unemployment",
+     "Promises straight honest numbers on property taxes and pushing back on transit cuts",
+     "Safety amongst local business owners",
+     "Get the downtown Riverwalk project across the finish line which was priced at $107 million back in 2020 and has since ballooned to more than half a billion dollars."
+    ]
+   },
+   {
+    "id": "brampton-mayoral-gaurav-walia",
+    "name": "Gaurav Walia",
+    "role": "Mayoral Candidate",
+    "about": "There was no information to be found on this candidate's campaign at the time of research."
+   }
+  ]
+ },
+ "races": {
+  "ms-c-1": [
+   {
+    "id": "ms-c-1-stephen-dasko",
+    "name": "Stephen Dasko",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://reelectdasko.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:spdasko@gmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (416) 414-4402",
+      "url": "tel:+14164144402",
+      "kind": "contact"
+     },
+     {
+      "label": "City of Mississauga council page",
+      "url": "https://www.mississauga.ca/council/city-council-members/ward-1-councillor-stephen-dasko/",
+      "kind": "official"
+     },
+     {
+      "label": "Article: Modern Mississauga",
+      "url": "https://www.modernmississauga.com/main/2026/9/4/2026-mississauga-election-candidate-profile-ward-1-stephen-dasko",
+      "kind": "news"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-1-olivia-gannon",
+    "name": "Olivia Gannon",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://oliviagannon.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/oliviagannonforward1/",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:oliviagannon@hotmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (416) 984-5488",
+      "url": "tel:+14169845488",
+      "kind": "contact"
+     },
+     {
+      "label": "Article: Modern Mississauga",
+      "url": "https://www.modernmississauga.com/main/2026/8/27/2026-mississauga-election-candidate-profile-ward-1-olivia-gannon",
+      "kind": "news"
+     }
+    ]
+   }
+  ],
+  "ms-c-2": [
+   {
+    "id": "ms-c-2-samer-fawzi-alghoul",
+    "name": "Samer Fawzi Alghoul",
+    "role": "Councillor Candidate"
+   },
+   {
+    "id": "ms-c-2-ronnie-amyotte",
+    "name": "Ronnie Amyotte",
+    "role": "Councillor Candidate"
+   },
+   {
+    "id": "ms-c-2-michelle-baker",
+    "name": "Michelle Baker",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.michellebaker.ca",
+      "kind": "site"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/michelle.baker.ward.2/",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:info@michellebaker.ca",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-2-michael-carroll",
+    "name": "Michael Carroll",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://michaelcarroll.ca",
+      "kind": "site"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/michaelcarrollward2/",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:mike@michaelcarroll.ca",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (647) 688-4561",
+      "url": "tel:+16476884561",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-2-leeann-cole",
+    "name": "LeeAnn Cole",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.leeanncole.ca",
+      "kind": "site"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/leeanncoleward2/",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:leeanncoleward2@gmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (647) 928-6276",
+      "url": "tel:+16479286276",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-2-tom-ellard",
+    "name": "Tom Ellard",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://tomellard.ca",
+      "kind": "site"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/tomellardward2/",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:contact@tomellard.ca",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (647) 797-0575",
+      "url": "tel:+16477970575",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-2-abdul-mukhtar-ghafarzoy",
+    "name": "Abdul Mukhtar Ghafarzoy",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/abdul_ward2",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:info@electabdul.ca",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-2-syed-jaffery",
+    "name": "Syed Jaffery",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/razajaffery14110",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:raza8@hotmail.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-2-ross-kutisker-jacobson",
+    "name": "Ross Kutisker-Jacobson",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/voterosskjward2/",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:voterosskjward2@gmail.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-2-ananya-majumder",
+    "name": "Ananya Majumder",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.ananyamajumder.ca",
+      "kind": "site"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/ananyamajumder2026",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:electmajumder@gmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (289) 652-6497",
+      "url": "tel:+12896526497",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-2-olga-polstvin",
+    "name": "Olga Polstvin",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Contact email",
+      "url": "mailto:voteolgaward2@gmail.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-2-alex-ragozzino",
+    "name": "Alex Ragozzino",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://alex4ward2.ca",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:alex@alex4ward2.ca",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (905) 891-6234",
+      "url": "tel:+19058916234",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-2-sue-shanly",
+    "name": "Sue Shanly",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://sueshanly.ca/",
+      "kind": "site"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-2-audrey-simpson",
+    "name": "Audrey Simpson",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/AudreySimpson_Councillor",
+      "kind": "social"
+     }
+    ]
+   }
+  ],
+  "ms-c-3": [
+   {
+    "id": "ms-c-3-chris-fonseca",
+    "name": "Chris Fonseca",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://chrisfonseca.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/people/Chris-Fonseca/100066114472189/",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:chrisfonseca2026@gmail.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-3-arshad-hashmi",
+    "name": "Arshad Hashmi",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/vote4arshad",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:arshadhashmi@hotmail.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-3-mendi-kabashi",
+    "name": "Mendi Kabashi",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "http://mendikabashi.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/mendikabashiward3",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:mendikab@gmail.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-3-kim-pines",
+    "name": "Kim Pines",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "http://kimpines.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/Kim_Pines.Official",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:info@kimpines.ca",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-3-stjepan-vukovic",
+    "name": "Stjepan Vukovic",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.vukovicforward3.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:szvukovic16@gmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (647) 285-2769",
+      "url": "tel:+16472852769",
+      "kind": "contact"
+     }
+    ]
+   }
+  ],
+  "ms-c-4": [
+   {
+    "id": "ms-c-4-zulfiqar-ali",
+    "name": "Zulfiqar Ali",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/ali_369_ca",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:ali.ce.ca@outlook.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-4-humphrey-chukwuemeka",
+    "name": "Humphrey Chukwuemeka",
+    "role": "Councillor Candidate"
+   },
+   {
+    "id": "ms-c-4-khawar-hussain",
+    "name": "Khawar Hussain",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://khawarhussain.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:khawarhussainawan@gmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (647) 532-8422",
+      "url": "tel:+16475328422",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-4-john-kovac",
+    "name": "John Kovac",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://johnkovac4.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:johnkovac2026@gmail.com",
+      "kind": "contact"
+     }
+    ]
+   }
+  ],
+  "ms-c-5": [
+   {
+    "id": "ms-c-5-aruna-anand",
+    "name": "Aruna Anand",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://arunaanand.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/aruna.anand.161",
+      "kind": "social"
+     },
+     {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/aruna-anand/",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:arunaanandward5@gmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (416) 999-3152",
+      "url": "tel:+14169993152",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-5-ismail-bawa",
+    "name": "Ismail Bawa",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.votebawa.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/ismail.bawa.9",
+      "kind": "social"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/Ismailbawa",
+      "kind": "social"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-5-raghavan-babu-bhogaiah",
+    "name": "Raghavan Babu Bhogaiah",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.raghavanbabu.com/",
+      "kind": "site"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/raghavanbb",
+      "kind": "social"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/p/Raghavan-Babu-Bhogaiah-61576597847490/",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:voteraghavan@gmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (249) 777-1924",
+      "url": "tel:+12497771924",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-5-mandeep-singh-dhaliwal",
+    "name": "Mandeep Singh Dhaliwal",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://mandeepforward5.com/",
+      "kind": "site"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/mandeep.ward5",
+      "kind": "social"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/mandeep.s.dhaliwal.5",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:info@mandeepforward5.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-5-jamie-dookie",
+    "name": "Jamie Dookie",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/dr-jamie-dookie-06a48114/",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:jdookie@yahoo.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (416) 454-0726",
+      "url": "tel:+14164540726",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-5-natalie-hart",
+    "name": "Natalie Hart",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.votehart.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/nataliehartwd5/",
+      "kind": "social"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/hartnataliea/?hl=en",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:natalie@votehart.ca",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (905) 288-7956",
+      "url": "tel:+19052887956",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-5-vipan-mehta",
+    "name": "Vipan Mehta",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/vipan.mehta5/",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:vipan4mississauga@gmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (416) 841-9183",
+      "url": "tel:+14168419183",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-5-michael-anthony-perretta",
+    "name": "Michael Anthony Perretta",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/michael-a-perretta-04643025/",
+      "kind": "social"
+     },
+     {
+      "label": "Phone: (416) 319-8880",
+      "url": "tel:+14163198880",
+      "kind": "contact"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:c218888@aol.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-5-rosemarie-sanchez-sanchez",
+    "name": "Rosemarie Sanchez Sanchez",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://votesanchezward5.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/entrepeneursinger",
+      "kind": "social"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/rosmaintoronto",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:Sanchezrosmarie137@gmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (416) 474-9433",
+      "url": "tel:+14164749433",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-5-danny-singh",
+    "name": "Danny Singh",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://votedanny.com/?utm_medium=social&fbclid=PAcGRvZgJleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA85MzY2MTk3NDMzOTI0NTkAAafYpSwMOy8JvHeb-hyJQL7ZpCPj2EMRHUgzde-Z9myBiBjOZhLpHsSu3FSBeA_aem_J7EyLo7mX1lCqj2ovPoTjg",
+      "kind": "site"
+     },
+     {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/danny-singh-10624172/",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:dsingh.ward5@gmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (647) 204-4802",
+      "url": "tel:+16472044802",
+      "kind": "contact"
+     },
+     {
+      "label": "Article: Modern Mississauga",
+      "url": "https://www.modernmississauga.com/main/2024/4/29/2024-ward-5-candidate-profile-danny-singh",
+      "kind": "news"
+     }
+    ]
+   }
+  ],
+  "ms-c-6": [
+   {
+    "id": "ms-c-6-michael-bastian",
+    "name": "Michael Bastian",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/michael-bastian-a376ab58/",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:michael.bastian@rogers.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-6-javed-dean",
+    "name": "Javed Dean",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Contact email",
+      "url": "mailto:jdean.net@hotmail.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-6-gurcharan-guleria",
+    "name": "Gurcharan Guleria",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Contact email",
+      "url": "mailto:humrahi@gmail.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-6-ahmad-reshad-hatefi",
+    "name": "Ahmad Reshad Hatefi",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/reshad-hatefi-37b7b3250/",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:hatefi.reshad@yahoo.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-6-joe-horneck",
+    "name": "Joe Horneck",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://joehorneck.com/about/",
+      "kind": "site"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/joehorneck",
+      "kind": "social"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/joe.horneck/",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:info@joehorneck.ca",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-6-martina-wood",
+    "name": "Martina Wood",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Contact email",
+      "url": "mailto:twabc1@gmail.com",
+      "kind": "contact"
+     }
+    ]
+   }
+  ],
+  "ms-c-7": [
+   {
+    "id": "ms-c-7-gerald-adad",
+    "name": "Gerald Adad",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://geraldadad.com/",
+      "kind": "site"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/gerald.adad.7",
+      "kind": "social"
+     },
+     {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/gerald-adad/",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:gerald.adad7@gmail.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-7-amir-ali",
+    "name": "Amir Ali",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://electamir.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/ElectAmir/",
+      "kind": "social"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/electamirali",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:electamir@gmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (905) 488-0973",
+      "url": "tel:+19054880973",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-7-lucas-alves",
+    "name": "Lucas Alves",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/votealves",
+      "kind": "social"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/votealves",
+      "kind": "social"
+     },
+     {
+      "label": "X (Twitter)",
+      "url": "https://www.twitter.com/votealves",
+      "kind": "social"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-7-joel-binda",
+    "name": "Joel Binda",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://joelbinda.com/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:info@joelbinda.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Voter guide: Vote Mississauga",
+      "url": "https://votemississauga.com/ward-7-candidates-mississauga/",
+      "kind": "news"
+     },
+     {
+      "label": "Voter guide: VoteGrid",
+      "url": "https://votegrid.ca/2026-ontario-municipal-election/mississauga-councillor-ward-7",
+      "kind": "news"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-7-asha-falinski",
+    "name": "Asha Falinski",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "http://ashafalinski.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/ashafalinski",
+      "kind": "social"
+     },
+     {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/asha-falinski-ab875b1b/",
+      "kind": "social"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-7-ahsan-khokhar",
+    "name": "Ahsan Khokhar",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "http://www.ahsankhr.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/ahsankhokhar.1",
+      "kind": "social"
+     },
+     {
+      "label": "X (Twitter)",
+      "url": "https://www.twitter.com/ahsankhr",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:ahsanward7@gmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (289) 779-4231",
+      "url": "tel:+12897794231",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-7-jerry-krzywda",
+    "name": "Jerry Krzywda",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Realtor.ca profile",
+      "url": "https://www.realtor.ca/agent/2190860/jerry-krzywda-200-4310-sherwoodtowne-blvd-mississauga-ontario-l4z4c4",
+      "kind": "site"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-7-keshav-mandadi",
+    "name": "Keshav Mandadi",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "http://votemandadi.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:votemandadi@gmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (416) 564-8268",
+      "url": "tel:+14165648268",
+      "kind": "contact"
+     },
+     {
+      "label": "Article: The Pointer",
+      "url": "https://thepointer.com/article/2025-04-04/you-re-the-star-candidate-conservative-hopeful-says-he-was-courted-for-donations-then-dumped-without-explanation",
+      "kind": "news"
+     },
+     {
+      "label": "Article: Global Indian",
+      "url": "https://www.globalindian.com/story/cover-story/dr-keshav-mandadi-from-rural-india-to-global-classrooms-and-political-stage-of-canada/",
+      "kind": "news"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-7-louroz-mercader",
+    "name": "Louroz Mercader",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://lourozmercader.com/",
+      "kind": "site"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/lourozmercader/",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:vote@lourozmercader.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (437) 475-7767",
+      "url": "tel:+14374757767",
+      "kind": "contact"
+     },
+     {
+      "label": "Article: Mississauga.com",
+      "url": "https://www.mississauga.com/opinion/contributors/meet-your-mississauga-ward-7-councillor-candidate-louroz-mercader/article_8640e4d7-48c8-527b-9493-be3d2205ef32.html",
+      "kind": "news"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-7-naila-saeed",
+    "name": "Naila Saeed",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "http://nailasaeed.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:naila@nailasaeed.ca",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (647) 799-8098",
+      "url": "tel:+16477998098",
+      "kind": "contact"
+     },
+     {
+      "label": "Voter guide: Vote Mississauga",
+      "url": "https://votemississauga.com/ward-7-candidates-mississauga/",
+      "kind": "news"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-7-maisa-salhia",
+    "name": "Maisa Salhia",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "http://votesalhia.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/maisasalhia",
+      "kind": "social"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/maisasalhia",
+      "kind": "social"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-7-amitabh-srivastava",
+    "name": "Amitabh Srivastava",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://amitabhsrivastava.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/AmitabhSrivastava",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:info@amitabhsrivastava.ca",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (905) 267-1027",
+      "url": "tel:+19052671027",
+      "kind": "contact"
+     },
+     {
+      "label": "Voter guide: Vote Mississauga",
+      "url": "https://votemississauga.com/ward-7-candidates-mississauga/",
+      "kind": "news"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-7-tassawar-syed",
+    "name": "Tassawar Syed",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/tassawar.syed.1",
+      "kind": "social"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/tm.syed",
+      "kind": "social"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-7-george-tavares",
+    "name": "George Tavares",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.abetterward7.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "LinkedIn",
+      "url": "https://ca.linkedin.com/in/george-tavares-718735111",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:info@abetterward7.ca",
+      "kind": "contact"
+     },
+     {
+      "label": "Article: inSauga",
+      "url": "https://www.insauga.com/candidate-for-mayor-drops-out-of-the-2026-race-in-mississauga/",
+      "kind": "news"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-7-peter-tolias",
+    "name": "Peter Tolias",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/peter_tolias/",
+      "kind": "social"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-7-hazra-wade",
+    "name": "Hazra Wade",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "http://votehazrawade.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/Hazra-Wade",
+      "kind": "social"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/hazrawade",
+      "kind": "social"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-7-leslie-zurek-silvestri",
+    "name": "Leslie Zurek-Silvestri",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/leslie.silvestri",
+      "kind": "social"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/lesliezureksilvestri",
+      "kind": "social"
+     }
+    ]
+   }
+  ],
+  "ms-c-8": [
+   {
+    "id": "ms-c-8-valerie-hogue",
+    "name": "Valerie Hogue",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://valeriebhogue.com/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:valerie@hogueward8.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-8-matt-mahoney",
+    "name": "Matt Mahoney",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://re-electmattmahoney.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:mahoneyward8@gmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (437) 339-4882",
+      "url": "tel:+14373394882",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-8-viktoria-manzar",
+    "name": "Viktoria Manzar",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.viktoriaward8.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:viktoriaward8@gmail.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-8-rahul-mehta",
+    "name": "Rahul Mehta",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Linktree",
+      "url": "https://linktr.ee/betterward8",
+      "kind": "social"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/betterward8",
+      "kind": "social"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-8-grzegorz-nowacki",
+    "name": "Grzegorz Nowacki",
+    "role": "Councillor Candidate"
+   }
+  ],
+  "ms-c-9": [
+   {
+    "id": "ms-c-9-ramsha-haq",
+    "name": "Ramsha Haq",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://votehaq.ca",
+      "kind": "site"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/haq4ward9",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:rhma@synergy-consulting.ca",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-9-anwar-knight",
+    "name": "Anwar Knight",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://voteanwarknight.ca",
+      "kind": "site"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/anwarknight",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:connect@voteanwarknight.ca",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-9-martin-reid",
+    "name": "Martin Reid",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/MartinReid4Ward9/",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:martin@martinreid.ca",
+      "kind": "contact"
+     },
+     {
+      "label": "City of Mississauga council page",
+      "url": "https://www.mississauga.ca/council/city-council-members/ward-9-councillor-martin-reid/",
+      "kind": "official"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-9-mohammad-shabbeer",
+    "name": "Mohammad Shabbeer",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://shabbeerprofile.wordpress.com",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:shabvision@gmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (647) 786-8631",
+      "url": "tel:+16477868631",
+      "kind": "contact"
+     }
+    ]
+   }
+  ],
+  "ms-c-10": [
+   {
+    "id": "ms-c-10-hamza-bajwa",
+    "name": "Hamza Bajwa",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/p/Hamza-Bajwa-61593779932090/",
+      "kind": "social"
+     },
+     {
+      "label": "LinkedIn",
+      "url": "https://ca.linkedin.com/in/hamza-bajwa-03a422221",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:hbward10@gmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Article: inSauga",
+      "url": "https://www.insauga.com/75-candidates-running-for-city-council-seats-in-mississauga/",
+      "kind": "news"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-10-suha-hashim",
+    "name": "Suha Hashim",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.suhaward10.com/",
+      "kind": "site"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/suhaward10/",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:suhaward10@gmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Article: inSauga",
+      "url": "https://www.insauga.com/75-candidates-running-for-city-council-seats-in-mississauga/",
+      "kind": "news"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-10-aatish-jamal",
+    "name": "Aatish Jamal",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.votejamal.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/voteaatishjamal/",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:info@votejamal.ca",
+      "kind": "contact"
+     },
+     {
+      "label": "Article: inSauga",
+      "url": "https://www.insauga.com/75-candidates-running-for-city-council-seats-in-mississauga/",
+      "kind": "news"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-10-sue-mcfadden",
+    "name": "Sue McFadden",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://reelectsue.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/SueMcFaddenMississauga",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:reelectsue@gmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (647) 904-2713",
+      "url": "tel:+16479042713",
+      "kind": "contact"
+     },
+     {
+      "label": "City of Mississauga council page",
+      "url": "https://www.mississauga.ca/council/city-council-members/ward-10-councillor-sue-mcfadden/",
+      "kind": "official"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-10-salman-tariq",
+    "name": "Salman Tariq",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/salmantariqerinmills/",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:salmantariqkhan1@gmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Official candidate list",
+      "url": "https://ovs.voterview.ca/candidatelist/2105",
+      "kind": "official"
+     },
+     {
+      "label": "Article: inSauga",
+      "url": "https://www.insauga.com/75-candidates-running-for-city-council-seats-in-mississauga/",
+      "kind": "news"
+     }
+    ]
+   }
+  ],
+  "ms-c-11": [
+   {
+    "id": "ms-c-11-brad-butt",
+    "name": "Brad Butt",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://bradbutt.ca/",
+      "kind": "site"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-11-amin-nanji",
+    "name": "Amin Nanji",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://aminnanji.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:aminvoteward11@gmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (416) 821-0891",
+      "url": "tel:+14168210891",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-c-11-dev-vashi",
+    "name": "Dev Vashi",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://devvashi.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:info@devvashi.ca",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (647) 588-8706",
+      "url": "tel:+16475888706",
+      "kind": "contact"
+     }
+    ]
+   }
+  ],
+  "ms-t-ep-1-7": [
+   {
+    "id": "ms-t-ep-1-7-charles-corey",
+    "name": "Charles Corey",
+    "role": "Trustee Candidate"
+   },
+   {
+    "id": "ms-t-ep-1-7-jad-el-ghali",
+    "name": "Jad El-Ghali",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://mississauga-ward-1-ward-7-trustee.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:info@votejad.ca",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-t-ep-1-7-sara-iqbal",
+    "name": "Sara Iqbal",
+    "role": "Trustee Candidate"
+   },
+   {
+    "id": "ms-t-ep-1-7-paul-pu",
+    "name": "Paul Pu",
+    "role": "Trustee Candidate"
+   },
+   {
+    "id": "ms-t-ep-1-7-miles-roque",
+    "name": "Miles Roque",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/roquefortrustee/",
+      "kind": "social"
+     }
+    ]
+   },
+   {
+    "id": "ms-t-ep-1-7-sariya-talat",
+    "name": "Sariya Talat",
+    "role": "Trustee Candidate"
+   }
+  ],
+  "ms-t-ep-2-8": [
+   {
+    "id": "ms-t-ep-2-8-tamer-elkateb",
+    "name": "Tamer Elkateb",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://tamer-for-trustee.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:Tamer-Trustee@outlook.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-t-ep-2-8-samantha-fung",
+    "name": "Samantha Fung",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/samantha-fung-91aaa2284/",
+      "kind": "social"
+     }
+    ]
+   },
+   {
+    "id": "ms-t-ep-2-8-brad-macdonald",
+    "name": "Brad MacDonald",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://makekidsfirst.com/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:election2014@makekidsfirst.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-t-ep-2-8-michael-michalias",
+    "name": "Michael Michalias",
+    "role": "Trustee Candidate"
+   }
+  ],
+  "ms-t-ep-3-4": [
+   {
+    "id": "ms-t-ep-3-4-vince-cerullo",
+    "name": "Vince Cerullo",
+    "role": "Trustee Candidate"
+   },
+   {
+    "id": "ms-t-ep-3-4-kashaf-paracha",
+    "name": "Kashaf Paracha",
+    "role": "Trustee Candidate"
+   },
+   {
+    "id": "ms-t-ep-3-4-shivakumar-sethumadhavan",
+    "name": "Shivakumar Sethumadhavan",
+    "role": "Trustee Candidate"
+   }
+  ],
+  "ms-t-ep-5": [
+   {
+    "id": "ms-t-ep-5-susan-benjamin",
+    "name": "Susan Benjamin",
+    "role": "Trustee Candidate"
+   },
+   {
+    "id": "ms-t-ep-5-mohamed-elghamry",
+    "name": "Mohamed Elghamry",
+    "role": "Trustee Candidate"
+   },
+   {
+    "id": "ms-t-ep-5-avtar-ghotra",
+    "name": "Avtar Ghotra",
+    "role": "Trustee Candidate"
+   },
+   {
+    "id": "ms-t-ep-5-marina-qureshi",
+    "name": "Marina Qureshi",
+    "role": "Trustee Candidate"
+   }
+  ],
+  "ms-t-ep-6-11": [
+   {
+    "id": "ms-t-ep-6-11-patrick-khrenaron-ma",
+    "name": "Patrick Khrenaron Ma",
+    "role": "Trustee Candidate"
+   },
+   {
+    "id": "ms-t-ep-6-11-jill-promoli",
+    "name": "Jill Promoli",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://jillpromoli.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/votejillpromoli/",
+      "kind": "social"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/jillpromoli/",
+      "kind": "social"
+     }
+    ]
+   },
+   {
+    "id": "ms-t-ep-6-11-harish-shroff",
+    "name": "Harish Shroff",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/harishshroff2026/",
+      "kind": "social"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/HarishShroff2/",
+      "kind": "social"
+     },
+     {
+      "label": "Article: The Local",
+      "url": "https://thelocal.to/peel-school-board-trustee-election-2026/",
+      "kind": "news"
+     }
+    ]
+   },
+   {
+    "id": "ms-t-ep-6-11-shashi-singh",
+    "name": "Shashi Singh",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://shashisingh.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/shashi05july/",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:ShashiForTrustee@gmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (647) 451-2834",
+      "url": "tel:+16474512834",
+      "kind": "contact"
+     },
+     {
+      "label": "Official candidate list",
+      "url": "https://ovs.voterview.ca/candidatelist/2105",
+      "kind": "official"
+     }
+    ]
+   }
+  ],
+  "ms-t-ep-9-10": [
+   {
+    "id": "ms-t-ep-9-10-mohanad-assal",
+    "name": "Mohanad Assal",
+    "role": "Trustee Candidate"
+   },
+   {
+    "id": "ms-t-ep-9-10-jeff-clark",
+    "name": "Jeff Clark",
+    "role": "Trustee Candidate"
+   }
+  ],
+  "ms-t-es-1-3": [
+   {
+    "id": "ms-t-es-1-3-mario-pascucci",
+    "name": "Mario Pascucci",
+    "role": "Trustee Candidate",
+    "note": "Acclaimed"
+   }
+  ],
+  "ms-t-es-2-8": [
+   {
+    "id": "ms-t-es-2-8-lucita-gonsalves",
+    "name": "Lucita Gonsalves",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/lucita_gonsalves",
+      "kind": "social"
+     }
+    ]
+   },
+   {
+    "id": "ms-t-es-2-8-herman-viloria",
+    "name": "Herman Viloria",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://hermanviloria.com/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:info@hermanviloria.com",
+      "kind": "contact"
+     }
+    ]
+   }
+  ],
+  "ms-t-es-4": [
+   {
+    "id": "ms-t-es-4-stefano-pascucci",
+    "name": "Stefano Pascucci",
+    "role": "Trustee Candidate",
+    "note": "Acclaimed"
+   }
+  ],
+  "ms-t-es-5": [
+   {
+    "id": "ms-t-es-5-sabir-masih",
+    "name": "Sabir Masih",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Contact email",
+      "url": "mailto:sabirmasih@hotmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (647) 760-2460",
+      "url": "tel:+16477602460",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-t-es-5-domenica-laura-simone",
+    "name": "Domenica Laura Simone",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/dls4maltonmississauga",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:laurasimone57@gmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (647) 225-0495",
+      "url": "tel:+16472250495",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "ms-t-es-5-thomas-thomas",
+    "name": "Thomas Thomas",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Phone: (416) 845-8225",
+      "url": "tel:+14168458225",
+      "kind": "contact"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:trusteethomas3@gmail.com",
+      "kind": "contact"
+     }
+    ]
+   }
+  ],
+  "ms-t-es-6-11": [
+   {
+    "id": "ms-t-es-6-11-luz-del-rosario",
+    "name": "Luz Del Rosario",
+    "role": "Trustee Candidate",
+    "note": "Acclaimed",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://luzdelrosario.ca/about-luz.html",
+      "kind": "site"
+     },
+     {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/luz-del-rosario-chrp-b41147a3/",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:luz_del_rosario@hotmail.com",
+      "kind": "contact"
+     }
+    ]
+   }
+  ],
+  "ms-t-es-7": [
+   {
+    "id": "ms-t-es-7-diana-carlesimo",
+    "name": "Diana Carlesimo",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/trusteecandidatedianacarlesimo/",
+      "kind": "social"
+     }
+    ]
+   },
+   {
+    "id": "ms-t-es-7-bruno-iannicca",
+    "name": "Bruno Iannicca",
+    "role": "Trustee Candidate"
+   }
+  ],
+  "ms-t-es-9-10": [
+   {
+    "id": "ms-t-es-9-10-brea-corbet",
+    "name": "Brea Corbet",
+    "role": "Trustee Candidate"
+   },
+   {
+    "id": "ms-t-es-9-10-reshma-mathew",
+    "name": "Reshma Mathew",
+    "role": "Trustee Candidate"
+   },
+   {
+    "id": "ms-t-es-9-10-mathew-thomas",
+    "name": "Mathew Thomas",
+    "role": "Trustee Candidate"
+   }
+  ],
+  "ms-t-fp": [
+   {
+    "id": "ms-t-fp-mahmad-neezam-chutoo",
+    "name": "Mahmad Neezam Chutoo",
+    "role": "Trustee Candidate"
+   },
+   {
+    "id": "ms-t-fp-pierre-gregory",
+    "name": "Pierre Gregory",
+    "role": "Trustee Candidate"
+   }
+  ],
+  "ms-t-fs": [
+   {
+    "id": "ms-t-fs-jennifer-green-frank",
+    "name": "Jennifer Green Frank",
+    "role": "Trustee Candidate",
+    "note": "Acclaimed"
+   }
+  ],
+  "br-cc-1-5": [
+   {
+    "id": "br-cc-1-5-gagandeep-singh-atwal",
+    "name": "Gagandeep Singh Atwal",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/groups/BramptonBeats/posts/27152437471098836/",
+      "kind": "social"
+     }
+    ]
+   },
+   {
+    "id": "br-cc-1-5-tajinder-singh-bhinder",
+    "name": "Tajinder Singh Bhinder",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://tajindersinghbhinder.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Realtor.ca profile",
+      "url": "https://www.realtor.ca/agent/2141835/tajinder-singh-bhinder-2-county-court-blvd-225-brampton-ontario-l6w3w8",
+      "kind": "site"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/1337214166133664",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:tajindersinghbrampton@gmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (437) 247-3594",
+      "url": "tel:+14372473594",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-cc-1-5-staceyann-brooks",
+    "name": "Staceyann Brooks",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://staceyannbrooks.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://instagram.com/electstacey",
+      "kind": "social"
+     },
+     {
+      "label": "Article: bramptonea.org",
+      "url": "https://www.bramptonea.org/mayor-all-wards-2-2-3-2-2-3-2/",
+      "kind": "news"
+     }
+    ]
+   },
+   {
+    "id": "br-cc-1-5-amit-dutta",
+    "name": "Amit Dutta",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.amitdutta.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/ad.dutta.7140",
+      "kind": "social"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/p/DdJYA2ajMR3/",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:team.amitdutta@gmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (365) 306-1033",
+      "url": "tel:+13653061033",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-cc-1-5-tracy-ann-pepe",
+    "name": "Tracy Ann Pepe",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.tracypepe.com/",
+      "kind": "site"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/nose.knows1",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:support@tracypepe.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (647) 517-1402",
+      "url": "tel:+16475171402",
+      "kind": "contact"
+     },
+     {
+      "label": "Article: CARP",
+      "url": "https://www.carp.ca/2026/02/03/carp-faces-bramptons-tracy-pepe/",
+      "kind": "news"
+     }
+    ]
+   },
+   {
+    "id": "br-cc-1-5-rowena-santos",
+    "name": "Rowena Santos",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.rowenasantos.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Website",
+      "url": "https://councillorsantos.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Peel Region council page",
+      "url": "https://peelregion.ca/about/mayors-council-members/councillor-rowena-santos",
+      "kind": "official"
+     }
+    ]
+   },
+   {
+    "id": "br-cc-1-5-tejpal-sidhu",
+    "name": "Tejpal Sidhu",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.electtejpalsidhu.com/",
+      "kind": "site"
+     },
+     {
+      "label": "Website",
+      "url": "https://www.tejpalsidhu.com/",
+      "kind": "site"
+     },
+     {
+      "label": "LinkedIn",
+      "url": "https://ca.linkedin.com/in/tejpal-sidhu-2254b2325",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:tejpal@tejpalsidhu.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (416) 627-9313",
+      "url": "tel:+14166279313",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-cc-1-5-romolo-tantalo",
+    "name": "Romolo Tantalo",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.voteromolo.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/profile.php?id=61592897413161",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:contact@voteromolo.ca",
+      "kind": "contact"
+     },
+     {
+      "label": "Peel Region meeting record",
+      "url": "https://pub-peelregion.escribemeetings.com/Meeting.aspx?Id=01a815d5-2a33-4b91-969c-d5bca6cd6a6d&Agenda=PostMinutes&lang=English",
+      "kind": "official"
+     }
+    ]
+   },
+   {
+    "id": "br-cc-1-5-khimani-williams",
+    "name": "Khimani Williams",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Facebook",
+      "url": "https://facebook.com/campaignforchange2026",
+      "kind": "social"
+     },
+     {
+      "label": "City of Brampton page",
+      "url": "https://www.brampton.ca/EN/City-Hall/Downtown-Brampton/pages/welcoming-streets-pilot.aspx",
+      "kind": "official"
+     }
+    ]
+   }
+  ],
+  "br-rc-1-5": [
+   {
+    "id": "br-rc-1-5-steven-lee",
+    "name": "Steven Lee",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.votestevenlee.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:VoteStevenLee@Gmail.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-rc-1-5-idris-orughu",
+    "name": "Idris Orughu",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://cleanupbrampton.com/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:idris@cleanupbrampton.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-rc-1-5-paul-vicente",
+    "name": "Paul Vicente",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://paulvicente.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:paulvicentebrampton@gmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (647) 501-8683",
+      "url": "tel:+16475018683",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-rc-1-5-pooja-walia",
+    "name": "Pooja Walia",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://poojawalia.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:voteforpoojawalia@gmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (365) 994-8578",
+      "url": "tel:+13659948578",
+      "kind": "contact"
+     }
+    ]
+   }
+  ],
+  "br-cc-2-6": [
+   {
+    "id": "br-cc-2-6-navjit-kaur-brar",
+    "name": "Navjit Kaur Brar",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "http://navjitkaur.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/navjitkaur.brar",
+      "kind": "social"
+     }
+    ]
+   },
+   {
+    "id": "br-cc-2-6-jermaine-chambers",
+    "name": "Jermaine Chambers",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.jermainechambers.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/jermibers",
+      "kind": "social"
+     }
+    ]
+   },
+   {
+    "id": "br-cc-2-6-yadvinder-deswal",
+    "name": "Yadvinder Deswal",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/ydforbrampton/",
+      "kind": "social"
+     }
+    ]
+   },
+   {
+    "id": "br-cc-2-6-raghav-dhir",
+    "name": "Raghav Dhir",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/raghav4brampton",
+      "kind": "social"
+     }
+    ]
+   },
+   {
+    "id": "br-cc-2-6-amir-khawaja-hassan",
+    "name": "Amir Khawaja Hassan",
+    "role": "Councillor Candidate"
+   },
+   {
+    "id": "br-cc-2-6-gurpreet-pabla",
+    "name": "Gurpreet Pabla",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/GurpreetPablaTO",
+      "kind": "social"
+     }
+    ]
+   },
+   {
+    "id": "br-cc-2-6-keval-shah",
+    "name": "Keval Shah",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://wakeupbrampton.com/",
+      "kind": "site"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/people/Elect-Keval-Shah-Brampton-Ward-2-6/61590046667104/",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:votekevalshah@gmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (647) 967-8683",
+      "url": "tel:+16479678683",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-cc-2-6-rakesh-singh-thakur",
+    "name": "Rakesh Singh Thakur",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/electrockythakur",
+      "kind": "social"
+     }
+    ]
+   },
+   {
+    "id": "br-cc-2-6-carmen-wilson",
+    "name": "Carmen Wilson",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.carmenwilson4thepeople.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/carmenwilson4thepeople",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:votecarmenwilson2026@outlook.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (647) 643-1247",
+      "url": "tel:+16476431247",
+      "kind": "contact"
+     }
+    ]
+   }
+  ],
+  "br-rc-2-6": [
+   {
+    "id": "br-rc-2-6-romy-dogra",
+    "name": "Romy Dogra",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/dograromy/",
+      "kind": "social"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/romydogra8/",
+      "kind": "social"
+     },
+     {
+      "label": "Article: inSauga",
+      "url": "https://www.insauga.com/whos-running-for-bramptons-next-mayor-and-city-council-seats/",
+      "kind": "news"
+     }
+    ]
+   },
+   {
+    "id": "br-rc-2-6-prempal-gill",
+    "name": "Prempal Gill",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.prempalgill.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/premgill1973",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:premgill@ymail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (647) 606-4931",
+      "url": "tel:+16476064931",
+      "kind": "contact"
+     },
+     {
+      "label": "Article: inSauga",
+      "url": "https://www.insauga.com/whos-running-for-bramptons-next-mayor-and-city-council-seats/",
+      "kind": "news"
+     }
+    ]
+   },
+   {
+    "id": "br-rc-2-6-julie-luckasavitch",
+    "name": "Julie Luckasavitch",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/votejulie_/",
+      "kind": "social"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/p/Vote-Julie-2026-61593653571705/",
+      "kind": "social"
+     }
+    ]
+   },
+   {
+    "id": "br-rc-2-6-michael-paul-palleschi",
+    "name": "Michael Paul Palleschi",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "X (Twitter)",
+      "url": "https://x.com/votepalleschi",
+      "kind": "social"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/councillorpalleschi/",
+      "kind": "social"
+     },
+     {
+      "label": "Peel Region council page",
+      "url": "https://peelregion.ca/about/mayors-council-members/councillor-michael-palleschi",
+      "kind": "official"
+     }
+    ]
+   },
+   {
+    "id": "br-rc-2-6-parth-sharma",
+    "name": "Parth Sharma",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/parth4change/",
+      "kind": "social"
+     },
+     {
+      "label": "TikTok",
+      "url": "https://www.tiktok.com/@pxrthofficials",
+      "kind": "social"
+     },
+     {
+      "label": "Article: inSauga",
+      "url": "https://www.insauga.com/whos-running-for-bramptons-next-mayor-and-city-council-seats/",
+      "kind": "news"
+     }
+    ]
+   },
+   {
+    "id": "br-rc-2-6-ajaib-singh-sran",
+    "name": "Ajaib Singh Sran",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/people/Ajaib-Singh-Sran/61593954242581/",
+      "kind": "social"
+     }
+    ]
+   },
+   {
+    "id": "br-rc-2-6-sameer-tandon",
+    "name": "Sameer Tandon",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/sam_tandon333/",
+      "kind": "social"
+     },
+     {
+      "label": "City of Brampton page",
+      "url": "https://www.sameerforbrampton.ca/",
+      "kind": "official"
+     },
+     {
+      "label": "Article: inSauga",
+      "url": "https://www.insauga.com/whos-running-for-bramptons-next-mayor-and-city-council-seats/",
+      "kind": "news"
+     }
+    ]
+   }
+  ],
+  "br-cc-3-4": [
+   {
+    "id": "br-cc-3-4-gita-devi-dawadi-dhakal",
+    "name": "Gita Devi Dawadi Dhakal",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/gita.dawadi.52",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:campaign@electgitabrampton.ca",
+      "kind": "contact"
+     },
+     {
+      "label": "City of Brampton page",
+      "url": "https://www.electgitabrampton.ca/",
+      "kind": "official"
+     }
+    ]
+   },
+   {
+    "id": "br-cc-3-4-dennis-keenan",
+    "name": "Dennis Keenan",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/denniskeenanbrampton",
+      "kind": "social"
+     },
+     {
+      "label": "City of Brampton council page",
+      "url": "https://www.brampton.ca/EN/City-Hall/Council-Office/Dennis-Keenan",
+      "kind": "official"
+     },
+     {
+      "label": "Peel Region council page",
+      "url": "https://peelregion.ca/about/council/councillor-dennis-keenan",
+      "kind": "official"
+     }
+    ]
+   },
+   {
+    "id": "br-cc-3-4-jugraj-singh-khinda",
+    "name": "Jugraj Singh Khinda",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://jugraj.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/jugraj.ca",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:contact@jugraj.ca",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-cc-3-4-kaniki-karine-mujinga",
+    "name": "Kaniki Karine Mujinga",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/karineforbrampton",
+      "kind": "social"
+     }
+    ]
+   },
+   {
+    "id": "br-cc-3-4-santokh-randhawa",
+    "name": "Santokh Randhawa",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/santokh_15singh/",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:santokh_15singh@hotmail.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-cc-3-4-ajit-seerha",
+    "name": "Ajit Seerha",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://ajseerha.com/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:vote@ajseerha.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (437) 535-7201",
+      "url": "tel:+14375357201",
+      "kind": "contact"
+     }
+    ]
+   }
+  ],
+  "br-rc-3-4": [
+   {
+    "id": "br-rc-3-4-manmeet-singh-choudhary",
+    "name": "Manmeet Singh Choudhary",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://votemanmeet.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:mannyforbrampton@gmail.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-rc-3-4-sandeep-kumar-goel",
+    "name": "Sandeep Kumar Goel",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://votesandeepgoel.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:voteforsandeep@gmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (416) 417-0230",
+      "url": "tel:+14164170230",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-rc-3-4-navneet-singh-lotey",
+    "name": "Navneet Singh Lotey",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://lotey.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:Campaign@lotey.ca",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (905) 872-1178",
+      "url": "tel:+19058721178",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-rc-3-4-martin-medeiros",
+    "name": "Martin Medeiros",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.martinmedeiros.ca/",
+      "kind": "site"
+     }
+    ]
+   }
+  ],
+  "br-cc-7-8": [
+   {
+    "id": "br-cc-7-8-nayan-brahmbhatt",
+    "name": "Nayan Brahmbhatt",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://nayanbrahmbhatt.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:info@nayanbrahmbhatt.ca",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (647) 923-7480",
+      "url": "tel:+16479237480",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-cc-7-8-taran-chahal",
+    "name": "Taran Chahal",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/taranchahalbrampton/",
+      "kind": "social"
+     },
+     {
+      "label": "Article: inSauga",
+      "url": "https://www.insauga.com/changes-made-to-brampton-election-candidate-list-at-deadline/",
+      "kind": "news"
+     }
+    ]
+   },
+   {
+    "id": "br-cc-7-8-ripudaman-singh-dhillon",
+    "name": "Ripudaman Singh Dhillon",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://ripu.ca/",
+      "kind": "site"
+     }
+    ]
+   },
+   {
+    "id": "br-cc-7-8-ayanna-kahlon",
+    "name": "Ayanna Kahlon",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://ayannakahlon.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Linktree",
+      "url": "https://linktr.ee/voteayannakahlon",
+      "kind": "social"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/voteayannakahlon",
+      "kind": "social"
+     }
+    ]
+   },
+   {
+    "id": "br-cc-7-8-ali-khan",
+    "name": "Ali Khan",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "City of Brampton candidate list",
+      "url": "https://www.brampton.ca/EN/City-Hall/Election/Candidates/Pages/candidateListing.aspx",
+      "kind": "official"
+     }
+    ]
+   },
+   {
+    "id": "br-cc-7-8-rakesh-sharma",
+    "name": "Rakesh Sharma",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://electrakeshsharma.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/rakeshforbrampton/",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:info@rakeshsharma.ca",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (416) 823-9505",
+      "url": "tel:+14168239505",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-cc-7-8-monica-singh-soares",
+    "name": "Monica Singh Soares",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://electmonica.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/monicasinghsoares/",
+      "kind": "social"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/monicasinghsoares",
+      "kind": "social"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:Hello@electmonica.ca",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (289) 207-8788",
+      "url": "tel:+12892078788",
+      "kind": "contact"
+     }
+    ]
+   }
+  ],
+  "br-rc-7-8": [
+   {
+    "id": "br-rc-7-8-rod-power",
+    "name": "Rod Power",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.rodpower.ca/",
+      "kind": "site"
+     }
+    ]
+   },
+   {
+    "id": "br-rc-7-8-cynthia-sri-pragash",
+    "name": "Cynthia Sri Pragash",
+    "role": "Councillor Candidate"
+   },
+   {
+    "id": "br-rc-7-8-anil-sahajpal",
+    "name": "Anil Sahajpal",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://anilsahajpal.com/",
+      "kind": "site"
+     }
+    ]
+   },
+   {
+    "id": "br-rc-7-8-aman-sharma",
+    "name": "Aman Sharma",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://amansharma.net/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:aman@amansharma.net",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-rc-7-8-christopher-soranno",
+    "name": "Christopher Soranno",
+    "role": "Councillor Candidate",
+    "note": "Has withdrawn (name may still appear on the ballot)"
+   },
+   {
+    "id": "br-rc-7-8-vedaant-vyas",
+    "name": "Vedaant Vyas",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://cvedaant.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:councillorvedaant@gmail.com",
+      "kind": "contact"
+     }
+    ]
+   }
+  ],
+  "br-cc-9-10": [
+   {
+    "id": "br-cc-9-10-janice-gordon-daniels",
+    "name": "Janice Gordon-Daniels",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.janicegordon.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:vote@janicegordon.ca",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (416) 839-4884",
+      "url": "tel:+14168394884",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-cc-9-10-azad-goyat",
+    "name": "Azad Goyat",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://azadgoyat.ca/",
+      "kind": "site"
+     }
+    ]
+   },
+   {
+    "id": "br-cc-9-10-jagdish-singh-grewal",
+    "name": "Jagdish Singh Grewal",
+    "role": "Councillor Candidate"
+   },
+   {
+    "id": "br-cc-9-10-kamran-hassan",
+    "name": "Kamran Hassan",
+    "role": "Councillor Candidate"
+   },
+   {
+    "id": "br-cc-9-10-sandeep-kumar",
+    "name": "Sandeep Kumar",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/sandeep4brampton",
+      "kind": "social"
+     }
+    ]
+   },
+   {
+    "id": "br-cc-9-10-baljinder-singh-nehal",
+    "name": "Baljinder Singh Nehal",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.nehalbaljinder.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:info@nehalbaljinder.ca",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (647) 806-0840",
+      "url": "tel:+16478060840",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-cc-9-10-cheryl-rodricks",
+    "name": "Cheryl Rodricks",
+    "role": "Councillor Candidate"
+   },
+   {
+    "id": "br-cc-9-10-harkirat-singh",
+    "name": "Harkirat Singh",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://harkiratsingh.ca/",
+      "kind": "site"
+     }
+    ]
+   }
+  ],
+  "br-rc-9-10": [
+   {
+    "id": "br-rc-9-10-michael-dancy",
+    "name": "Michael Dancy",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://mikedancy.com/vote/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:mike@mikedancy.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-rc-9-10-prabhjot-singh-dhaliwal",
+    "name": "Prabhjot Singh Dhaliwal",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/prabhjotsingh78613/",
+      "kind": "social"
+     }
+    ]
+   },
+   {
+    "id": "br-rc-9-10-gurpreet-k-dhillon",
+    "name": "Gurpreet K. Dhillon",
+    "role": "Councillor Candidate"
+   },
+   {
+    "id": "br-rc-9-10-gurpreet-singh-dhillon",
+    "name": "Gurpreet Singh Dhillon",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://gurpreetsinghdhillon.com/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:info@gurpreetsinghdhillon.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (647) 825-0910",
+      "url": "tel:+16478250910",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-rc-9-10-satpaul-singh-johal",
+    "name": "Satpaul Singh Johal",
+    "role": "Councillor Candidate"
+   },
+   {
+    "id": "br-rc-9-10-nirmala-devi-madhu",
+    "name": "Nirmala Devi Madhu",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://votenirmala.com/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:Nirmala.Brampton@gmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (647) 326-5763",
+      "url": "tel:+16473265763",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-rc-9-10-gregory-miller",
+    "name": "Gregory Miller",
+    "role": "Councillor Candidate"
+   },
+   {
+    "id": "br-rc-9-10-sukhman-sangha",
+    "name": "Sukhman Sangha",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://sukhmansangha.com/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:vote@sukhmansangha.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (647) 993-9078",
+      "url": "tel:+16479939078",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-rc-9-10-harsimran-singh",
+    "name": "Harsimran Singh",
+    "role": "Councillor Candidate",
+    "links": [
+     {
+      "label": "City of Brampton page",
+      "url": "https://www.harsimranbrampton.ca/",
+      "kind": "official"
+     }
+    ]
+   }
+  ],
+  "br-t-ep-1-5": [
+   {
+    "id": "br-t-ep-1-5-sufian-baig",
+    "name": "Sufian Baig",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.sufianbaig.ca/",
+      "kind": "site"
+     }
+    ]
+   },
+   {
+    "id": "br-t-ep-1-5-david-green",
+    "name": "David Green",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.electdavid.ca/",
+      "kind": "site"
+     }
+    ]
+   },
+   {
+    "id": "br-t-ep-1-5-kathy-mcdonald",
+    "name": "Kathy McDonald",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/trusteemcdonald/",
+      "kind": "social"
+     }
+    ]
+   },
+   {
+    "id": "br-t-ep-1-5-stan-taylor",
+    "name": "Stan Taylor",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://education-matters.info/candidate-bio-stan-taylor/",
+      "kind": "site"
+     }
+    ]
+   }
+  ],
+  "br-t-ep-2-6": [
+   {
+    "id": "br-t-ep-2-6-chris-campbell",
+    "name": "Chris Campbell",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Phone: 365.773.2470",
+      "url": "tel:+13657732470",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-t-ep-2-6-will-davies",
+    "name": "Will Davies",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Contact email",
+      "url": "mailto:trusteedavies@gmail.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-t-ep-2-6-pal-dhaliwal",
+    "name": "Pal Dhaliwal",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/Dhaliwal.pal",
+      "kind": "social"
+     },
+     {
+      "label": "Phone: 647.297.0008",
+      "url": "tel:+16472970008",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-t-ep-2-6-jeannette-flynn",
+    "name": "Jeannette Flynn",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Phone: 416.518.5943",
+      "url": "tel:+14165185943",
+      "kind": "contact"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:jeannettetrustee@gmail.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-t-ep-2-6-mansoor-mirza",
+    "name": "Mansoor Mirza",
+    "role": "Trustee Candidate"
+   },
+   {
+    "id": "br-t-ep-2-6-shrutiben-shah",
+    "name": "Shrutiben Shah",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://shrutibenshah.com/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:electshruti@gmail.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-t-ep-2-6-charanpreet-singh-sidhu",
+    "name": "Charanpreet Singh Sidhu",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://charanpreetsidhu.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Phone: 647.998.0434",
+      "url": "tel:+16479980434",
+      "kind": "contact"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:c10sidhu@gmail.com",
+      "kind": "contact"
+     }
+    ]
+   }
+  ],
+  "br-t-ep-3-4": [
+   {
+    "id": "br-t-ep-3-4-jot-dhaliwal",
+    "name": "Jot Dhaliwal",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://voteforjot.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:VoteForJot@gmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (647) 552-3100",
+      "url": "tel:+16475523100",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-t-ep-3-4-claudio-c-lewis",
+    "name": "Claudio C. Lewis",
+    "role": "Trustee Candidate"
+   },
+   {
+    "id": "br-t-ep-3-4-arshei-nidha",
+    "name": "Arshei Nidha",
+    "role": "Trustee Candidate"
+   },
+   {
+    "id": "br-t-ep-3-4-celina-reyes",
+    "name": "Celina Reyes",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/votecelinareyes/",
+      "kind": "social"
+     }
+    ]
+   }
+  ],
+  "br-t-ep-7-8": [
+   {
+    "id": "br-t-ep-7-8-karla-bailey",
+    "name": "Karla Bailey",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://karlabailey.ca/home/",
+      "kind": "site"
+     },
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/karla.bailey/",
+      "kind": "social"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/MsKarlaBailey/",
+      "kind": "social"
+     }
+    ]
+   },
+   {
+    "id": "br-t-ep-7-8-brian-james-blake",
+    "name": "Brian James Blake",
+    "role": "Trustee Candidate"
+   },
+   {
+    "id": "br-t-ep-7-8-andrea-francis-bucknor",
+    "name": "Andrea Francis-Bucknor",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/andreabucknor1/",
+      "kind": "social"
+     },
+     {
+      "label": "City of Brampton candidate list",
+      "url": "https://www.brampton.ca/EN/City-Hall/Election/Candidates/Pages/candidateListing.aspx",
+      "kind": "official"
+     }
+    ]
+   },
+   {
+    "id": "br-t-ep-7-8-michael-gyovai",
+    "name": "Michael Gyovai",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/MichaelJGyovaiYesWeWill",
+      "kind": "social"
+     },
+     {
+      "label": "LinkedIn",
+      "url": "https://ca.linkedin.com/in/michaeljgyovai",
+      "kind": "social"
+     },
+     {
+      "label": "Article: Brampton Guardian",
+      "url": "https://www.bramptonguardian.com/opinion/contributors/meet-your-brampton-ward-7-8-english-public-trustee-candidate-michael-j-gyovai/article_8c3fccda-a793-5215-b588-28b1dce9362f.html",
+      "kind": "news"
+     }
+    ]
+   },
+   {
+    "id": "br-t-ep-7-8-jatin-sethi",
+    "name": "Jatin Sethi",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/voteforsethi/",
+      "kind": "social"
+     },
+     {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/jsethi1001/",
+      "kind": "social"
+     },
+     {
+      "label": "City of Brampton candidate list",
+      "url": "https://www.brampton.ca/EN/City-Hall/Election/Candidates/Pages/candidateListing.aspx",
+      "kind": "official"
+     }
+    ]
+   }
+  ],
+  "br-t-ep-9-10": [
+   {
+    "id": "br-t-ep-9-10-denise-dani",
+    "name": "Denise Dani",
+    "role": "Trustee Candidate"
+   },
+   {
+    "id": "br-t-ep-9-10-parneet-dhothar",
+    "name": "Parneet Dhothar",
+    "role": "Trustee Candidate"
+   },
+   {
+    "id": "br-t-ep-9-10-dharmavir-gohil",
+    "name": "Dharmavir Gohil",
+    "role": "Trustee Candidate"
+   },
+   {
+    "id": "br-t-ep-9-10-therese-guidolin",
+    "name": "Therese Guidolin",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/trezinpeel/",
+      "kind": "social"
+     }
+    ]
+   },
+   {
+    "id": "br-t-ep-9-10-muhammad-misbahul-haque",
+    "name": "Muhammad Misbahul Haque",
+    "role": "Trustee Candidate"
+   },
+   {
+    "id": "br-t-ep-9-10-pankaj-joshi",
+    "name": "Pankaj Joshi",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://electpankajjoshi.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:joship@outlook.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (647) 968-5874",
+      "url": "tel:+16479685874",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-t-ep-9-10-mily-michael-macwan",
+    "name": "Mily Michael Macwan",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.milymacwan.ca/",
+      "kind": "site"
+     }
+    ]
+   },
+   {
+    "id": "br-t-ep-9-10-khushpal-singh-pawar",
+    "name": "Khushpal Singh Pawar",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.khushpal.com/",
+      "kind": "site"
+     },
+     {
+      "label": "Phone: (647) 468-1316",
+      "url": "tel:+16474681316",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-t-ep-9-10-gurinder-sehgal",
+    "name": "Gurinder Sehgal",
+    "role": "Trustee Candidate"
+   },
+   {
+    "id": "br-t-ep-9-10-gagandeep-sharma",
+    "name": "Gagandeep Sharma",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Contact email",
+      "url": "mailto:https://www.tiktok.com/@gagandeep.sharma82",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-t-ep-9-10-daljit-singh",
+    "name": "Daljit Singh",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://votedaljit.net/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:votedaljit@gmail.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (416) 684-7500",
+      "url": "tel:+14166847500",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-t-ep-9-10-harsimran-singh",
+    "name": "Harsimran Singh",
+    "role": "Trustee Candidate"
+   }
+  ],
+  "br-t-es-1-3-4": [
+   {
+    "id": "br-t-es-1-3-4-amanda-baez",
+    "name": "Amanda Baez",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/amandabfortrustee/",
+      "kind": "social"
+     }
+    ]
+   },
+   {
+    "id": "br-t-es-1-3-4-alfonso-menanno",
+    "name": "Alfonso Menanno",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://menannofortrustee.com/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:alfonso@menannofortrustee.com",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (365) 767-2229",
+      "url": "tel:+13657672229",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-t-es-1-3-4-anisha-thomas",
+    "name": "Anisha Thomas",
+    "role": "Trustee Candidate"
+   }
+  ],
+  "br-t-es-2-5-6": [
+   {
+    "id": "br-t-es-2-5-6-darryl-brian-d-souza",
+    "name": "Darryl Brian D'Souza",
+    "role": "Trustee Candidate"
+   },
+   {
+    "id": "br-t-es-2-5-6-dominique-darmanin-sturgeon",
+    "name": "Dominique Darmanin-Sturgeon",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.dominiqueds.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:dominiquedsfortrustee@yahoo.com",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-t-es-2-5-6-damien-joseph",
+    "name": "Damien Joseph",
+    "role": "Trustee Candidate"
+   }
+  ],
+  "br-t-es-7-8-9-10": [
+   {
+    "id": "br-t-es-7-8-9-10-andrea-baranowski",
+    "name": "Andrea Baranowski",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Campaign website",
+      "url": "https://www.catholictrustee.ca/",
+      "kind": "site"
+     },
+     {
+      "label": "Contact email",
+      "url": "mailto:info@catholictrustee.ca",
+      "kind": "contact"
+     },
+     {
+      "label": "Phone: (416) 402-5442",
+      "url": "tel:+14164025442",
+      "kind": "contact"
+     }
+    ]
+   },
+   {
+    "id": "br-t-es-7-8-9-10-karen-dancy",
+    "name": "Karen Dancy",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/karen4dptrustee/",
+      "kind": "social"
+     }
+    ]
+   },
+   {
+    "id": "br-t-es-7-8-9-10-shawn-xaviour",
+    "name": "Shawn Xaviour",
+    "role": "Trustee Candidate",
+    "links": [
+     {
+      "label": "City of Brampton candidate list",
+      "url": "https://www.brampton.ca/EN/City-Hall/Election/Candidates/Pages/candidateListing.aspx",
+      "kind": "official"
+     }
+    ]
+   }
+  ],
+  "br-t-fp": [
+   {
+    "id": "br-t-fp-mahmad-neezam-chutoo",
+    "name": "Mahmad Neezam Chutoo",
+    "role": "Trustee Candidate"
+   },
+   {
+    "id": "br-t-fp-pierre-gregory",
+    "name": "Pierre Gregory",
+    "role": "Trustee Candidate"
+   }
+  ],
+  "br-t-fs": [
+   {
+    "id": "br-t-fs-genevieve-grenier",
+    "name": "Genevieve Grenier",
+    "role": "Trustee Candidate"
+   }
+  ]
+ }
+};
+/* ===== CANDIDATE DATA END ===== */
+
+// Attach the candidate data to the city/race structure above.
+for(const [cityKey, list] of Object.entries(CANDIDATE_DATA.mayoral)){ if(CITIES[cityKey]) CITIES[cityKey].mayoral = list; }
+for(const city of Object.values(CITIES)){
+  for(const race of [...city.councillorRaces, ...city.trusteeRaces]){
+    race.candidates = CANDIDATE_DATA.races[race.id] || [];
+  }
+}
+
+
+function initials(name){
+  return name.split(' ').filter(Boolean).map(p=>p[0]).slice(0,2).join('').toUpperCase();
+}
+
+function setAccent(cityKey){
+  const c = CITIES[cityKey];
+  const root = document.documentElement;
+  if(!c){ root.style.setProperty('--accent', 'var(--teal)'); root.style.setProperty('--accent-ink', 'var(--teal-ink)'); return; }
+  root.style.setProperty('--accent', `var(${c.accentVar})`);
+  root.style.setProperty('--accent-ink', `var(${c.accentInkVar})`);
+}
+
+function findCandidate(id){
+  for(const c of Object.values(CITIES)){
+    const inMayoral = c.mayoral.find(x=>x.id===id);
+    if(inMayoral) return {...inMayoral, city:c.key, category:'Mayoral'};
+    for(const race of c.councillorRaces){
+      const found = race.candidates.find(x=>x.id===id);
+      if(found) return {...found, city:c.key, category: race.type ? `${race.type} Councillor` : 'Councillor', raceLabel: race.label};
+    }
+    for(const race of c.trusteeRaces){
+      const found = race.candidates.find(x=>x.id===id);
+      if(found) return {...found, city:c.key, category:'School Trustee', raceLabel: `${race.board} Trustee \u2014 ${raceWardLabel(race)}`};
+    }
+  }
+  return null;
+}
+
+/* ---------------------------------------------------------
+   WARD FINDER
+   Uses represent.opennorth.ca (Open North's free civic boundary
+   API — no key required) to match a point or postal code to a
+   Mississauga or Brampton ward, and Nominatim (OpenStreetMap)
+   to geocode street addresses. Both are public, free services;
+   for heavy production traffic, follow Nominatim's usage policy
+   or swap in a commercial geocoder.
+--------------------------------------------------------- */
+async function getJSON(url){
+  let res;
+  try{
+    res = await fetch(url, { headers: { 'Accept': 'application/json' } });
+  }catch(e){
+    const err = new Error('fetch-network'); err.cause = e; throw err;
+  }
+  if(!res.ok){ throw new Error(`fetch-http-${res.status}`); }
+  return res.json();
+}
+
+function parseWardFromBoundary(obj){
+  const setUrl = (obj.related && obj.related.boundary_set_url) || '';
+  if(setUrl.includes('mississauga-wards')){
+    const n = String(obj.external_id || '').match(/\d+/);
+    if(n) return { city:'mississauga', ward:n[0] };
+  }
+  if(setUrl.includes('brampton-wards')){
+    const n = String(obj.external_id || '').match(/\d+/);
+    if(n) return { city:'brampton', ward:n[0] };
+  }
+  return null;
+}
+
+async function containsQuery(lat, lon){
+  // Query each city's own standalone ward boundary set separately.
+  // Note: 'peel-wards' is a *different*, regional-council overlay with
+  // merged/differently-numbered wards — not what we want here.
+  for(const set of ['mississauga-wards', 'brampton-wards']){
+    const url = `https://represent.opennorth.ca/boundaries/${set}/?contains=${lat},${lon}&format=json`;
+    console.log('[ward-finder] contains query', url);
+    let data;
+    try{ data = await getJSON(url); }
+    catch(e){ console.error('[ward-finder] contains query failed for', set, e); continue; }
+    console.log('[ward-finder] contains response for', set, data);
+    for(const b of (data.objects || [])){ const m = parseWardFromBoundary(b); if(m) return m; }
+  }
+  return null;
+}
+
+async function findWard(query){
+  const log = (...args) => console.log('[ward-finder]', ...args);
+  const cleanedPostal = query.replace(/\s+/g, '').toUpperCase();
+  const isPostal = /^[A-Z]\d[A-Z]\d[A-Z]\d$/.test(cleanedPostal);
+
+  if(isPostal){
+    try{
+      const url = `https://represent.opennorth.ca/postcodes/${cleanedPostal}/?format=json`;
+      log('postcode lookup', url);
+      const data = await getJSON(url);
+      log('postcode response', data);
+      const list = [].concat(data.boundaries_centroid || [], data.boundaries_concordance || []);
+      for(const b of list){ const m = parseWardFromBoundary(b); if(m) return m; }
+      if(data.centroid){
+        const m = await containsQuery(data.centroid.coordinates[1], data.centroid.coordinates[0]);
+        if(m) return m;
+      }
+      const err = new Error('outside-coverage'); err.stage = 'postcode'; throw err;
+    }catch(e){
+      if(e.message === 'outside-coverage') throw e;
+      log('postcode path failed, falling back to geocoding:', e);
+      // fall through to geocoding the postal code as an address
+    }
+  }
+
+  let geoData;
+  try{
+    const geoUrl = `https://nominatim.openstreetmap.org/search?format=json&countrycodes=ca&limit=1&q=${encodeURIComponent(query + ', Ontario, Canada')}`;
+    log('geocoding', geoUrl);
+    const geoRes = await fetch(geoUrl);
+    if(!geoRes.ok){ const err = new Error(`geocode-http-${geoRes.status}`); err.stage = 'geocode'; throw err; }
+    geoData = await geoRes.json();
+    log('geocode response', geoData);
+  }catch(e){
+    if(e instanceof TypeError){ const err = new Error('geocode-network-blocked'); err.stage = 'geocode'; err.cause = e; throw err; }
+    throw e;
+  }
+  if(!geoData.length){ const err = new Error('not-found'); err.stage = 'geocode'; throw err; }
+  const { lat, lon, display_name } = geoData[0];
+
+  try{
+    const m = await containsQuery(lat, lon);
+    if(m) return m;
+    const err = new Error('outside-coverage'); err.stage = 'boundary'; err.coords = `${lat},${lon}`; err.geocoded = display_name; throw err;
+  }catch(e){
+    if(e.message === 'outside-coverage') throw e;
+    // Geocoding worked but we couldn't confirm the ward automatically \u2014
+    // surface what we DO know (the resolved address) rather than nothing.
+    const err = new Error('boundary-lookup-failed');
+    err.stage = 'boundary'; err.cause = e; err.geocoded = display_name;
+    throw err;
+  }
+}
+
+async function handleWardFinder(evt){
+  evt.preventDefault();
+  const input = document.getElementById('wardFinderInput');
+  const btn = document.getElementById('wardFinderBtn');
+  const resultEl = document.getElementById('wardFinderResult');
+  const query = input.value.trim();
+  if(!query) return false;
+
+  btn.disabled = true; btn.textContent = 'Looking up\u2026';
+  resultEl.innerHTML = `<p class="fr-status">Matching \u201c${query}\u201d to a ward\u2026</p>`;
+
+  try{
+    const match = await findWard(query);
+    const city = CITIES[match.city];
+    resultEl.innerHTML = `
+      <div class="fr-card">
+        <span class="fr-text"><span class="big">${city.name} \u00b7 Ward ${match.ward}</span>That\u2019s your municipal ward based on what you entered.</span>
+        <a class="fr-go" href="#/city/${match.city}/ward/${match.ward}">View Ward ${match.ward} \u2192</a>
+      </div>`;
+  }catch(err){
+    console.error('[ward-finder] failed:', err);
+    let msg;
+    if(err.message === 'geocode-network-blocked'){
+      msg = `Couldn\u2019t reach the address-lookup service \u2014 that usually means your browser or network is blocking outside requests. Try a different network, or check with Mississauga\u2019s or Brampton\u2019s own ward finder directly. <span style="opacity:.6;">(Technical: ${err.cause ? err.cause.message : err.message})</span>`;
+    } else if(err.message && err.message.startsWith('geocode-http-')){
+      msg = `The address lookup service returned an error (${err.message.replace('geocode-http-','status ')}). Try again in a moment.`;
+    } else if(err.message === 'outside-coverage'){
+      const resolvedNote = err.geocoded ? ` We matched it to \u201c${err.geocoded}\u201d${err.coords ? ' (' + err.coords + ')' : ''} \u2014 if that doesn\u2019t look right, try being more specific.` : '';
+      msg = `That location doesn\u2019t appear to fall inside Mississauga or Brampton\u2019s ward boundaries.${resolvedNote}`;
+    } else if(err.message === 'not-found'){
+      const looksLikePostal = /^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/.test(query.trim());
+      msg = looksLikePostal
+        ? `We couldn\u2019t match that postal code \u2014 newer or less common Canadian postal codes aren\u2019t always in the free map data we use. Try your full street address instead, e.g. \u201c300 City Centre Dr, Mississauga\u201d.`
+        : `We couldn\u2019t find that address. Try including the city, e.g. \u201c300 City Centre Dr, Mississauga\u201d.`;
+    } else if(err.message === 'boundary-lookup-failed'){
+      const causeMsg = err.cause ? err.cause.message : 'unknown';
+      msg = `We found \u201c${err.geocoded || query}\u201d, but the ward-boundary service didn\u2019t respond, so we couldn\u2019t confirm your exact ward automatically. <span style="opacity:.6;">(Technical: ${causeMsg})</span><br><br>You can look it up directly: <a href="${CITIES.mississauga.officialUrl}" target="_blank" rel="noopener">Mississauga ward finder</a> &middot; <a href="${CITIES.brampton.officialUrl}" target="_blank" rel="noopener">Brampton ward finder</a>.`;
+    } else {
+      msg = `Something went wrong looking that up (${err.message || 'unknown error'}). You can also check directly with <a href="${CITIES.mississauga.officialUrl}" target="_blank" rel="noopener">Mississauga</a> or <a href="${CITIES.brampton.officialUrl}" target="_blank" rel="noopener">Brampton</a>\u2019s official election office.`;
+    }
+    resultEl.innerHTML = `<div class="fr-error">${msg}</div>`;
+  }finally{
+    btn.disabled = false; btn.textContent = 'Find my ward';
+  }
+  return false;
+}
+
+
+/* ---------------------------------------------------------
+   SEARCH (by candidate name)
+--------------------------------------------------------- */
+function escHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function normName(s){ return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/&amp;/g,' ').replace(/[^a-z0-9 ]+/g,' ').replace(/\s+/g,' ').trim(); }
+function allCandidates(){
+  const out = [];
+  for(const c of Object.values(CITIES)){
+    (c.mayoral||[]).forEach(x => out.push({c:x, city:c, label:'Mayoral candidate'}));
+    c.councillorRaces.forEach(r => (r.candidates||[]).forEach(x => out.push({c:x, city:c, label:r.label})));
+    c.trusteeRaces.forEach(r => (r.candidates||[]).forEach(x => out.push({c:x, city:c, label:`${r.board} Trustee \u2014 ${raceWardLabel(r)}`})));
+  }
+  return out;
+}
+function searchCandidates(q){
+  const toks = normName(q).split(' ').filter(Boolean);
+  if(!toks.length) return [];
+  const hits = allCandidates().filter(x => { const n = normName(x.c.name); return toks.every(t => n.includes(t)); });
+  const first = normName(q);
+  hits.sort((a,b) => {
+    const an = normName(a.c.name), bn = normName(b.c.name);
+    const as = an.startsWith(first) ? 0 : 1, bs = bn.startsWith(first) ? 0 : 1;
+    return as - bs || an.localeCompare(bn);
+  });
+  return hits;
+}
+function renderSearch(q){
+  const hits = searchCandidates(q);
+  const cards = hits.map(x => `
+    <button class="cand-card" onclick="go('#/candidate/${x.c.id}')">
+      <span class="avatar">${initials(x.c.name)}</span>
+      <span>
+        <span class="name">${x.c.name}</span>
+        <div class="role">${x.city.name} \u00b7 ${x.label}</div>
+        ${x.c.note ? `<div class="role">${x.c.note}</div>` : ''}
+        ${x.c.incumbent ? '<span class="badge">Incumbent</span>' : ''}
+      </span>
+    </button>`).join('');
+  return `
+    <section class="hub-head">
+      <span class="tag">Search</span>
+      <h1>${q.trim() ? 'Results for \u201c' + escHtml(q.trim()) + '\u201d' : 'Search candidates'}</h1>
+      <p class="search-meta">${q.trim() ? hits.length + ' candidate' + (hits.length===1?'':'s') + ' found' : 'Type a first or last name in the search bar above.'}</p>
+    </section>
+    ${hits.length ? `<div class="cand-grid">${cards}</div>` : (q.trim() ? `<div class="empty"><div class="glyph">?</div><p>No candidate matches \u201c${escHtml(q.trim())}\u201d. Try just a last name or a different spelling. If you can\u2019t find someone, check the <a href="${CITIES.mississauga.officialUrl}" target="_blank" rel="noopener">Mississauga</a> or <a href="${CITIES.brampton.officialUrl}" target="_blank" rel="noopener">Brampton</a> official lists.</p></div>` : '')}
+  `;
+}
+(function initSearch(){
+  const form = document.getElementById('siteSearchForm'), input = document.getElementById('siteSearchInput'), box = document.getElementById('siteSuggest');
+  function hide(){ box.hidden = true; box.innerHTML = ''; }
+  input.addEventListener('input', () => {
+    const q = input.value;
+    if(!normName(q)){ hide(); return; }
+    const hits = searchCandidates(q);
+    box.innerHTML = hits.length
+      ? hits.slice(0,8).map(x => `<button type="button" data-id="${x.c.id}"><div class="sn">${x.c.name}</div><div class="ss">${x.city.name} \u00b7 ${x.label}</div></button>`).join('') + (hits.length>8 ? `<div class="none">${hits.length-8} more \u2014 press Search to see all</div>` : '')
+      : '<div class="none">No matching candidate. Try a last name only.</div>';
+    box.hidden = false;
+  });
+  box.addEventListener('click', e => {
+    const b = e.target.closest('button[data-id]'); if(!b) return;
+    hide(); go('#/candidate/' + b.dataset.id);
+  });
+  form.addEventListener('submit', e => {
+    e.preventDefault(); hide();
+    go('#/search/' + encodeURIComponent(input.value.trim()));
+  });
+  input.addEventListener('keydown', e => { if(e.key === 'Escape') hide(); });
+  document.addEventListener('click', e => { if(!e.target.closest('.search-row')) hide(); });
+})();
+
+/* ---------------------------------------------------------
+   ROUTER
+--------------------------------------------------------- */
+function go(hash){ location.hash = hash; }
+document.getElementById('brandBtn').addEventListener('click', ()=>go('#/'));
+window.addEventListener('hashchange', render);
+window.addEventListener('DOMContentLoaded', render);
+
+function parseHash(){
+  const h = location.hash.replace(/^#\/?/, '');
+  return h.split('/').filter(Boolean);
+}
+
+function render(){
+  const parts = parseHash();
+  const app = document.getElementById('app');
+  const crumbs = document.getElementById('crumbs');
+  let html = '';
+  let crumbHtml = `<button onclick="go('#/')">Home</button>`;
+
+  if(parts.length === 0){
+    setAccent(null);
+    html = renderHome();
+  } else if(parts[0] === 'city' && parts[1] && CITIES[parts[1]]){
+    const city = CITIES[parts[1]];
+    setAccent(city.key);
+    crumbHtml += ` <span class="sep">/</span> <button onclick="go('#/city/${city.key}')">${city.name}</button>`;
+
+    if(parts.length === 2){
+      html = renderCityHub(city);
+      crumbHtml = crumbHtml.replace(/<button([^>]*)>([^<]*)<\/button>$/, '<span class="current">$2</span>');
+    } else if(parts[2] === 'mayoral'){
+      html = renderCandidateGrid(city.mayoral, `${city.name} Mayoral Candidates`, city);
+      crumbHtml += ` <span class="sep">/</span> <span class="current">Mayoral Candidates</span>`;
+    } else if(parts[2] === 'wards' && !parts[3]){
+      html = renderWardGrid(city);
+      crumbHtml += ` <span class="sep">/</span> <span class="current">Choose Your Ward</span>`;
+    } else if(parts[2] === 'ward' && parts[3]){
+      const wardNum = parts[3];
+      crumbHtml += ` <span class="sep">/</span> <span class="current">Ward ${wardNum}</span>`;
+      html = renderWardHub(city, wardNum);
+    } else if(parts[2] === 'race' && parts[3]){
+      const race = findRace(city, parts[3]);
+      if(race){
+        const title = race.board ? `${race.board} Trustee` : race.label;
+        crumbHtml += ` <span class="sep">/</span> <span class="current">${title}</span>`;
+        html = renderCandidateGrid(race.candidates, title, city, raceWardLabel(race));
+      }
+    }
+  } else if(parts[0] === 'search'){
+    setAccent(null);
+    const q = decodeURIComponent(parts.slice(1).join('/') || '');
+    html = renderSearch(q);
+    crumbHtml += ` <span class="sep">/</span> <span class="current">Search</span>`;
+    const si = document.getElementById('siteSearchInput'); if(si && si.value.trim() !== q.trim()) si.value = q;
+  } else if(parts[0] === 'candidate' && parts[1]){
+    const cand = findCandidate(parts[1]);
+    if(cand){
+      setAccent(cand.city);
+      const city = CITIES[cand.city];
+      crumbHtml += ` <span class="sep">/</span> <button onclick="go('#/city/${city.key}')">${city.name}</button> <span class="sep">/</span> <span class="current">${cand.name}</span>`;
+      html = renderCandidateDetail(cand);
+    } else {
+      html = `<div class="empty" style="margin-top:60px;"><div class="glyph">?</div><p>We couldn\u2019t find that candidate.</p></div>`;
+    }
+  }
+
+  if(!html){ html = renderHome(); crumbHtml = `<button onclick="go('#/')">Home</button>`; setAccent(null); }
+  app.innerHTML = html;
+  crumbs.innerHTML = crumbHtml;
+  window.scrollTo({top:0, behavior:'auto'});
+}
+
+/* ---------------------------------------------------------
+   VIEWS
+--------------------------------------------------------- */
+function renderHome(){
+  return `
+    <section class="hero">
+      <span class="eyebrow">2026 Ontario Municipal Election · Oct 26, 2026</span>
+      <h1>Know who\u2019s on your ballot &mdash; before you vote.</h1>
+      <p class="lede">MECA Project puts every Mayoral, Council and School Trustee candidate for Mississauga and Brampton in one place, organized by ward, so you can see who\u2019s running and what they stand for in a couple of taps.</p>
+
+      <div class="city-picker">
+        <button class="city-card mississauga" onclick="go('#/city/mississauga')">
+          <span class="stripe"></span>
+          <span class="tag">Peel Region</span>
+          <h2>Mississauga</h2>
+          <div class="meta">${CITIES.mississauga.blurb}</div>
+          <div class="go">Explore candidates &rarr;</div>
+        </button>
+        <button class="city-card brampton" onclick="go('#/city/brampton')">
+          <span class="stripe"></span>
+          <span class="tag">Peel Region</span>
+          <h2>Brampton</h2>
+          <div class="meta">${CITIES.brampton.blurb}</div>
+          <div class="go">Explore candidates &rarr;</div>
+        </button>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat"><div class="num mono">26.10</div><div class="label">Election day · Oct 2026</div></div>
+        <div class="stat"><div class="num mono">21</div><div class="label">Total wards across both cities</div></div>
+        <div class="stat"><div class="num mono">21.08</div><div class="label">Nominations closed</div></div>
+      </div>
+
+      <div class="finder">
+        <h3>Not sure which ward you\u2019re in?</h3>
+        <p class="sub">Enter your street address and we\u2019ll match it to your Mississauga or Brampton ward. Postal codes work sometimes, but addresses are far more reliable.</p>
+        <form id="wardFinderForm" onsubmit="return handleWardFinder(event)">
+          <input type="text" id="wardFinderInput" placeholder="e.g. 300 City Centre Dr, Mississauga" autocomplete="off" required />
+          <button class="submit" type="submit" id="wardFinderBtn">Find my ward</button>
+        </form>
+        <p class="hint">Looks up your ward using OpenStreetMap and Represent (Open North\u2019s open civic-boundary API) \u2014 nothing you enter is stored. Newer or less common postal codes aren\u2019t always in the free map data \u2014 if yours doesn\u2019t work, try your street address instead.</p>
+        <div class="finder-result" id="wardFinderResult"></div>
+      </div>
+    </section>
+
+    <section class="about">
+      <h3>About MECA Project</h3>
+      <p>Municipal government decides what happens on your street &mdash; transit, housing, parks, policing and your property taxes &mdash; yet municipal races are consistently the hardest to research. MECA Project exists to close that gap: pick your city, find your ward, and see every candidate running for Mayor, Council and School Board Trustee in one clean, ward-by-ward view.</p>
+      <p>This is an independent, non-partisan project. It is not affiliated with the City of Mississauga, the City of Brampton, or any candidate or party.</p>
+    </section>
+  `;
+}
+
+function renderCityHub(city){
+  return `
+    <section class="hub-head">
+      <span class="tag">${city.name} · 2026 Municipal Election</span>
+      <h1>${city.name}</h1>
+      <p class="note">${city.blurb} Nominations have closed &mdash; confirm the final list on the <a href="${city.officialUrl}" target="_blank" rel="noopener">official election page</a> before you vote.</p>
+    </section>
+    <div class="option-grid">
+      <button class="option-card" onclick="go('#/city/${city.key}/mayoral')">
+        <span class="n mono">01</span>
+        <h3>Mayoral Candidates</h3>
+        <p>${city.mayoral.length} candidate${city.mayoral.length===1?'':'s'} registered so far, city-wide.</p>
+      </button>
+      <button class="option-card" onclick="go('#/city/${city.key}/wards')">
+        <span class="n mono">02</span>
+        <h3>Choose Your Ward</h3>
+        <p>Find your Councillor and School Trustee candidates across ${city.wardCount} wards.</p>
+      </button>
+    </div>
+  `;
+}
+
+function renderWardGrid(city){
+  let stubs = '';
+  for(let i=1;i<=city.wardCount;i++){
+    stubs += `
+      <button class="ward-stub" onclick="go('#/city/${city.key}/ward/${i}')">
+        <span class="lbl">Ward</span>
+        <span class="num mono">${i}</span>
+        <span class="perf"></span>
+      </button>`;
+  }
+  return `
+    <section class="hub-head">
+      <span class="tag">${city.name}</span>
+      <h1>Choose your ward</h1>
+      <p class="note">Not sure which ward you\u2019re in? Check your address on the <a href="${city.officialUrl}" target="_blank" rel="noopener">official election site</a>.</p>
+    </section>
+    <div class="ward-grid">${stubs}</div>
+  `;
+}
+
+function renderWardHub(city, wardNum){
+  const races = racesForWard(city, wardNum);
+
+  const raceCard = (r, n, label) => `
+    <button class="option-card" onclick="go('#/city/${city.key}/race/${r.id}')">
+      <span class="n mono">${String(n).padStart(2,'0')}</span>
+      <h3>${label}</h3>
+      <p>${r.candidates.length} candidate${r.candidates.length===1?'':'s'} loaded${r.wards !== 'citywide' ? ' &middot; ' + raceWardLabel(r) : ' &middot; Citywide'}.</p>
+    </button>`;
+
+  const councilCards = races.councillor.map((r,i) => raceCard(r, i+1, r.label)).join('');
+  const trusteeCards = races.trustee.map((r,i) => raceCard(r, i+1, `${r.board} Trustee`)).join('');
+
+  const groupingNote = city.key === 'brampton'
+    ? `Brampton pairs wards for Council (a City &amp; a Regional Councillor per pair) and groups them differently again per school board for Trustee races \u2014 that\u2019s why you may see more than one race below.`
+    : `Some School Trustee races cover more than one ward, and French-language boards are elected citywide \u2014 that\u2019s why Trustee options can differ from your Councillor race.`;
+
+  return `
+    <section class="hub-head">
+      <span class="tag">${city.name} &middot; Ward ${wardNum}</span>
+      <h1>Ward ${wardNum}</h1>
+      <p class="note">${groupingNote}</p>
+    </section>
+    <h3 style="margin-top:34px; font-size:1rem; color:var(--ink-soft); letter-spacing:.02em; text-transform:uppercase;">Council</h3>
+    <div class="option-grid">${councilCards || '<p class="note">No council race found for this ward.</p>'}</div>
+    <h3 style="margin-top:34px; font-size:1rem; color:var(--ink-soft); letter-spacing:.02em; text-transform:uppercase;">School Board Trustee</h3>
+    <div class="option-grid">${trusteeCards || '<p class="note">No trustee race found for this ward.</p>'}</div>
+  `;
+}
+
+function renderCandidateGrid(list, title, city, subLabel){
+  const cards = (list||[]).map(c => `
+    <button class="cand-card" onclick="go('#/candidate/${c.id}')">
+      <span class="avatar">${initials(c.name)}</span>
+      <span>
+        <span class="name">${c.name}</span>
+        <div class="role">${c.note || c.role || ''}</div>
+        ${c.incumbent ? '<span class="badge">Incumbent</span>' : ''}
+      </span>
+    </button>
+  `).join('');
+
+  const emptyState = `
+    <div class="empty">
+      <div class="glyph">&mdash;</div>
+      <p>We haven\u2019t added candidates for this race yet. See the <a href="${city.officialUrl}" target="_blank" rel="noopener">official election page</a> for the full list.</p>
+    </div>`;
+
+  return `
+    <section class="hub-head">
+      <span class="tag">${city.name}${subLabel ? ' · ' + subLabel : ''}</span>
+      <h1>${title}</h1>
+    </section>
+    ${ (list && list.length) ? `<div class="cand-grid">${cards}</div>` : emptyState }
+  `;
+}
+
+function renderCandidateDetail(c){
+  const city = CITIES[c.city];
+  const isMayoral = c.category === 'Mayoral';
+
+  const extraLinks = (c.links && c.links.length)
+    ? c.links.map(l => `<li><a href="${l.url}"${/^https?:/.test(l.url) ? ' target="_blank" rel="noopener"' : ''}>${l.label}</a></li>`).join('')
+    : `<li class="no-links" style="font-size:.88rem; color:var(--ink-soft); padding:4px 2px;">We haven\u2019t found a campaign website or social media page for this candidate yet.</li>`;
+
+  const head = `
+    <section class="detail-head">
+      <span class="avatar-lg">${initials(c.name)}</span>
+      <div>
+        <h1>${c.name}</h1>
+        <div class="role-line">${c.category}${c.raceLabel ? ' &middot; ' + c.raceLabel : ''} &middot; ${city.name}</div>
+        ${c.incumbent ? '<span class="badge">Incumbent</span>' : ''}
+      </div>
+    </section>`;
+
+  if(!isMayoral){
+    // Councillor & Trustee candidates: links only \u2014 no bio or promises.
+    // Users are pointed to the candidate's own materials to research directly.
+    return `
+      ${head}
+      <div class="detail-grid" style="grid-template-columns:1fr; max-width:520px;">
+        <div>
+          <div class="panel">
+            <h3>Explore Their Campaign</h3>
+            <p class="placeholder-text" style="font-style:normal; margin-top:0;">We keep ${c.category.toLowerCase()} candidate pages link-only \u2014 browse their own website and social media directly for their full platform.</p>
+            <ul class="link-list" style="margin-top:14px;">
+              <li><a href="${city.officialUrl}" target="_blank" rel="noopener">${city.name} official election page</a></li>
+              ${extraLinks}
+            </ul>
+            <p class="official-note">Verify every candidate\u2019s current, official information directly with them or with ${city.name}\u2019s City Clerk before relying on it.</p>
+          </div>
+        </div>
+      </div>
+      <button class="back-link" onclick="history.back()">&larr; Back</button>
+    `;
+  }
+
+  const aiNote = c.aiSummary ? '<p class="ai-note"><strong>AI-generated summary.</strong> Written by an AI assistant from public sources (the candidate\u2019s own website and news coverage). It may contain mistakes or be out of date &mdash; check the candidate\u2019s own materials.</p>' : '';
+  const aboutHtml = c.about
+    ? `<p>${c.about}</p>${aiNote}`
+    : `<p class="placeholder-text">${c.note ? c.note + '. ' : ''}We haven\u2019t added a biography for ${c.name} yet.</p>`;
+
+  const promisesHtml = (c.promises && c.promises.length)
+    ? `<ul class="promise-list">${c.promises.map(p => `<li><span class="dot"></span> ${p}</li>`).join('')}</ul>${aiNote}`
+    : `<ul class="promise-list">
+        <li class="placeholder-text" style="margin-top:0;">We haven\u2019t added campaign promises for this candidate yet. Check their campaign website for their platform.</li>
+      </ul>`;
+
+  return `
+    ${head}
+
+    <div class="detail-grid">
+      <div>
+        <div class="panel">
+          <h3>About</h3>
+          ${aboutHtml}
+        </div>
+        <div class="panel">
+          <h3>Campaign Promises</h3>
+          ${promisesHtml}
+        </div>
+      </div>
+      <div>
+        <div class="panel">
+          <h3>Official &amp; Other Links</h3>
+          <ul class="link-list">
+            <li><a href="${city.officialUrl}" target="_blank" rel="noopener">${city.name} official election page</a></li>
+            ${extraLinks}
+          </ul>
+          <p class="official-note">Verify every candidate\u2019s current, official information directly with them or with ${city.name}\u2019s City Clerk before relying on it.</p>
+        </div>
+      </div>
+    </div>
+
+    <button class="back-link" onclick="history.back()">&larr; Back</button>
+  `;
+}
+</script>
+</body>
+</html>
