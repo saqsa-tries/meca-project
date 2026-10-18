@@ -157,6 +157,10 @@
   .suggest .ss{ font-size:0.78rem; color:var(--ink-soft); margin-top:2px; }
   .suggest .none{ padding:12px 14px; font-size:0.9rem; color:var(--ink-soft); }
   .search-meta{ margin-top:10px; color:var(--ink-soft); font-size:0.9rem; }
+  .avatar{ overflow:hidden; }
+  .avatar img, .avatar-lg img{ width:100%; height:100%; object-fit:cover; object-position:center top; display:block; }
+  .avatar-lg{ overflow:hidden; }
+  .photo-credit{ font-size:0.72rem; color:var(--ink-soft); margin-top:6px; }
   .ai-note{ margin-top:14px; padding:10px 12px; border-left:3px solid var(--line); font-size:.85rem; color:var(--ink-soft); line-height:1.5; max-width:62ch; }
   .about{ margin-top:56px; border-top:1px solid var(--line); padding-top:36px; }
   .about h3{ font-size:1.3rem; }
@@ -424,6 +428,7 @@ const CANDIDATE_DATA = {
     "id": "mississauga-mayoral-bonnie-crombie",
     "name": "Bonnie Crombie",
     "role": "Mayoral Candidate",
+    "photo": "https://www.bonniecrombie.ca/bonnie-about.jpg",
     "about": "Bonnie Crombie served as Mayor from 2014 to 2024 and was elected for three consecutive terms. Before becoming mayor, she served as a Mississauga Ward 5 Councillor and Peel Regional Councillor from 2011 to 2014, and as Member of Parliament for Mississauga-Streetsville from 2008 to 2011. She became leader of the Ontario Liberal Party in 2023 and served until 2026. Crombie holds an Honours BA in political science and international relations from the University of Toronto and an MBA from York University's Schulich School of Business. Before entering municipal politics, Crombie held positions in business, marketing, public affairs and government relations, including work with McDonald's, The Walt Disney Company and the Insurance Bureau of Canada.",
     "promises": [
      "To provide interest-free property-tax deferrals on the City portion of qualifying commercial and industrial property taxes for businesses directly affected by U.S. tariffs",
@@ -455,6 +460,7 @@ const CANDIDATE_DATA = {
     "name": "Dipika Damerla",
     "role": "Mayoral Candidate",
     "note": "Ward 7 Councillor",
+    "photo": "https://dipikaformayor.ca/images/dipika-img.webp",
     "about": "Dipika Damerla is the Ward 7 city councillor in Mississauga, a seat she has held since 2018. Before that she was the Liberal MPP for Mississauga East—Cooksville from 2011 to 2018. She also ran in the 2024 Mississauga mayoral by-election. Her campaign website describes her priorities as transparency, waste reduction, green space and mental health crisis response.",
     "aiSummary": true,
     "promises": [
@@ -538,6 +544,7 @@ const CANDIDATE_DATA = {
     "id": "mississauga-mayoral-amjad-jilani",
     "name": "Amjad Jilani",
     "role": "Mayoral Candidate",
+    "photo": "https://amjadformayor.ca/assets/img/amjad-hero.webp",
     "about": "Amjad Jilani is an ordinary resident of Mississauga who got fed up, started posting online about the state of the city, and found that thousands of other frustrated residents felt the same way. Hence, his whole qualification argument is built on contrast: he points out that the people currently in charge advertise 20 years of political experience, then asks voters to look at what that produced, namely an LRT pushed to 2028, a 5.21 per cent tax hike, and climbing auto theft. Therefore, he frames himself as the unbought option and says he takes no corporate donations. That said, there is very little public record on him beyond the campaign itself. He has not disclosed a career history, education, or professional background, and no outlet has profiled him. He runs the campaign Instagram (@amjadformayor) himself, replies to DMs and comments personally.",
     "promises": [
      "Mitigating car theft using community",
@@ -573,6 +580,7 @@ const CANDIDATE_DATA = {
     "id": "mississauga-mayoral-mike-matulewicz",
     "name": "Mike Matulewicz",
     "role": "Mayoral Candidate",
+    "photo": "https://static.wixstatic.com/media/7929a7_1502d87395d44dd7837daf1aaa671a0e~mv2.jpeg/v1/fill/w_567,h_600,al_c,q_80,enc_avif,quality_auto/7929a7_1502d87395d44dd7837daf1aaa671a0e~mv2.jpeg",
     "about": "Mike Matulewicz is a retired Toronto Police Service officer with corporate background. Matulewicz wants safety and stability for community which is why he is running for mayor, his campaign focuses on issues like crime, affordability, job loss and addressing poverty. He currently has a Folding Chair Driveway Campaign where Matulewicz visits your driveway with his golden retriever Luke to discuss contemporary issues.",
     "promises": [
      "Lower tax burden on homeowners and businesses | End city programs that don’t deliver essential services",
@@ -616,6 +624,7 @@ const CANDIDATE_DATA = {
     "name": "Carolyn Parrish",
     "role": "Mayoral Candidate",
     "incumbent": true,
+    "photo": "https://parrishformayor.com/wp-content/uploads/2026/03/3-scaled-cropped-2.webp",
     "about": "Carolyn Parrish is the current Mayor of Mississauga and is running for re-election. She has been mayor since 2024. Before that she served as a Mississauga city councillor, and earlier as the Member of Parliament for Mississauga—Erindale from 1993 to 2006. Her campaign website focuses on shifting some costs from the Region of Peel to the cities and on changing how Peel Regional Police is funded.",
     "aiSummary": true,
     "promises": [
@@ -669,6 +678,7 @@ const CANDIDATE_DATA = {
     "name": "Alvin Tedjo",
     "role": "Mayoral Candidate",
     "note": "Ward 2 Councillor",
+    "photo": "https://images.squarespace-cdn.com/content/v1/65e224c70319d5765a59bf7a/35f2b839-e12f-4874-9c9d-17097bfb6820/Screenshot+2026-10-08+at+3.26.28%E2%80%AFPM.png",
     "about": "Alvin Tedjo is a lifelong resident of Mississauga. Alvin Tedjo currently serves as the City Councillor for Clarkson and Lorne Park. His campaign describes his work regarding supporting families, strengthening communities, improving government services, and making Mississauga more affordable. His experience in Mississauga includes working to provide free transit for children, increasing housing options, protecting green spaces, and improving the community. He also serves on city side and regional committees, where he works to bring the residents’ concerns and ideas forward. Alvin Tedjo advocates mainly for families, communities, and affordability and says he wants to use his experience in public service to help improve Mississauga.",
     "promises": [
      "Lower the cost of living for Mississauga residents",
@@ -703,6 +713,7 @@ const CANDIDATE_DATA = {
     "id": "mississauga-mayoral-ana-luisa-vasquez-de-espinal",
     "name": "Ana Luisa Vasquez De Espinal",
     "role": "Mayoral Candidate",
+    "photo": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,fit=crop/7wEeuazp06320YoU/ana-luisa-natural-photo---copy-LT4Q2rizu36ycR28.png",
     "about": "Ana Luisa Vasquez De Espinal is Mississauga resident and a dedicated mother of 3 running for Mayor of Mississauga in the 2026 Municipal Election. She has 10+ years experienced housing property consultant along with 10+ years experienced legal counselor to private financial sector. Vasquez De Espinal is also the 1st Dominican to obtain marriage officer license in Ontario along with the 1st Dominican mayoral candidate in Mississauga.",
     "promises": [
      "Make Mississauga more affordable to live, easier to work and safer to grow",
@@ -734,6 +745,7 @@ const CANDIDATE_DATA = {
     "id": "brampton-mayoral-jagruti-bhatt",
     "name": "Jagruti Bhatt",
     "role": "Mayoral Candidate",
+    "photo": "https://base44.app/api/apps/69ff31ac25145fc60f05f95a/files/mp/public/69ff31ac25145fc60f05f95a/3f9afaa2d_JagrutiPicture1.png",
     "about": "Jagruti Bhatt is an entrepreneur and grassroots community leader running for Mayor of Brampton in the 2026 municipal election. A Brampton resident with over 20 years in Canada and more than 15 years of community service, she has led grassroots initiatives supporting newcomers, women facing family challenges, youth employment, and international students, including founding the COVID Food Vahini project to deliver meals and supplies to isolated seniors and families. Her campaign focuses on practical, people-first leadership, neighborhood safety, small business growth, and fair local regulations.",
     "promises": [
      "<strong>Community Safety:<\/strong> Build safer neighborhoods by expanding proactive local policing and boosting community engagement programs",
@@ -852,6 +864,7 @@ const CANDIDATE_DATA = {
     "id": "brampton-mayoral-wesley-jackson",
     "name": "Wesley Jackson",
     "role": "Mayoral Candidate",
+    "photo": "https://images.squarespace-cdn.com/content/v1/6aa5f785329a4f7b8723a12c/faed13f2-e57b-466e-9928-833146ced1bc/profile+pic.jpeg",
     "about": "Wesley Jackson is a real estate lawyer running for Mayor of Brampton. He also ran for mayor in 2018. His campaign website says he has given educational seminars for the Ontario Bar Association and the Association of Nigerian Lawyers, and lists endorsements from several former Brampton city and regional councillors. His site describes his themes as strong communities, a connected city and a brighter future, and raises questions about city debt repayments and building costs.",
     "aiSummary": true,
     "promises": [
@@ -916,6 +929,7 @@ const CANDIDATE_DATA = {
     "id": "brampton-mayoral-sandeep-somal",
     "name": "Sandeep Somal",
     "role": "Mayoral Candidate",
+    "photo": "https://static.wixstatic.com/media/8631f4_bc663f88eb3f4f49a030b34427c77b0a~mv2.jpg/v1/fill/w_980,h_1470,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/MD260523064724-Retouched_JPG.jpg",
     "about": "Sandeep Somal is a candidate for Mayor of Brampton. According to his campaign website and local news coverage, he was born and raised in Brampton, works for a non-profit organization, and founded a hockey club for low-income and racialized youth. He says he is running to make city government more responsive and efficient.",
     "aiSummary": true,
     "promises": [
@@ -4833,6 +4847,10 @@ for(const city of Object.values(CITIES)){
 }
 
 
+function avatarInner(c){
+  if(!c.photo) return initials(c.name);
+  return '<img src="' + c.photo + '" alt="Photo of ' + c.name.replace(/"/g,'') + ', from their campaign website" loading="lazy" referrerpolicy="no-referrer" onerror="var pc=document.querySelector(\'.photo-credit\'); if(pc) pc.remove(); this.parentNode.textContent=\'' + initials(c.name) + '\'">';
+}
 function initials(name){
   return name.split(' ').filter(Boolean).map(p=>p[0]).slice(0,2).join('').toUpperCase();
 }
@@ -5042,7 +5060,7 @@ function renderSearch(q){
   const hits = searchCandidates(q);
   const cards = hits.map(x => `
     <button class="cand-card" onclick="go('#/candidate/${x.c.id}')">
-      <span class="avatar">${initials(x.c.name)}</span>
+      <span class="avatar">${avatarInner(x.c)}</span>
       <span>
         <span class="name">${x.c.name}</span>
         <div class="role">${x.city.name} \u00b7 ${x.label}</div>
@@ -5284,7 +5302,7 @@ function renderWardHub(city, wardNum){
 function renderCandidateGrid(list, title, city, subLabel){
   const cards = (list||[]).map(c => `
     <button class="cand-card" onclick="go('#/candidate/${c.id}')">
-      <span class="avatar">${initials(c.name)}</span>
+      <span class="avatar">${avatarInner(c)}</span>
       <span>
         <span class="name">${c.name}</span>
         <div class="role">${c.note || c.role || ''}</div>
@@ -5318,11 +5336,12 @@ function renderCandidateDetail(c){
 
   const head = `
     <section class="detail-head">
-      <span class="avatar-lg">${initials(c.name)}</span>
+      <span class="avatar-lg">${avatarInner(c)}</span>
       <div>
         <h1>${c.name}</h1>
         <div class="role-line">${c.category}${c.raceLabel ? ' &middot; ' + c.raceLabel : ''} &middot; ${city.name}</div>
         ${c.incumbent ? '<span class="badge">Incumbent</span>' : ''}
+        ${c.photo ? '<div class="photo-credit">Photo from the candidate\u2019s campaign website.</div>' : ''}
       </div>
     </section>`;
 
